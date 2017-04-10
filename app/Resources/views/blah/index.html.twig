@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Blahs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blah in blahs %}
+            <tr>
+                <td><a href="{{ path('blah_show', { 'id': blah.id }) }}">{{ blah.id }}</a></td>
+                <td>{{ blah.name }}</td>
+                <td>{{ blah.getage() }}</td>
+                <td>{{ blah.getTomo() }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blah_show', { 'id': blah.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blah_edit', { 'id': blah.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blah_new') }}">Create a new blah</a>
+        </li>
+    </ul>
+{% endblock %}
