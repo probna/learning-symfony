@@ -1,7 +1,12 @@
+two_e_systems_airlines:
+    resource: "@TwoESystemsAirlinesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 miro:
     resource: "@MiroBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /miro
 
 app:
     resource: '@AppBundle/Controller/'
