@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Airlines list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for airline in airlines %}
+            <tr>
+                <td><a href="{{ path('airline_show', { 'id': airline.id }) }}">{{ airline.id }}</a></td>
+                <td>{{ airline.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('airline_show', { 'id': airline.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('airline_edit', { 'id': airline.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('airline_new') }}">Create a new airline</a>
+        </li>
+    </ul>
+{% endblock %}
