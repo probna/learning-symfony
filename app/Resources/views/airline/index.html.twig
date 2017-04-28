@@ -14,15 +14,15 @@
         <tbody>
         {% for airline in airlines %}
             <tr>
-                <td><a href="{{ path('airline_show', { 'id': airline.id }) }}">{{ airline.id }}</a></td>
+                <td><a href="{{ path('airlines_show', { 'id': airline.id }) }}">{{ airline.id }}</a></td>
                 <td>{{ airline.name }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('airline_show', { 'id': airline.id }) }}">show</a>
+                            <a href="{{ path('airlines_show', { 'id': airline.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('airline_edit', { 'id': airline.id }) }}">edit</a>
+                            <a href="{{ path('airlines_edit', { 'id': airline.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -33,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('airline_new') }}">Create a new airline</a>
+            <a href="{{ path('airlines_new') }}">Create a new airline</a>
         </li>
     </ul>
 {% endblock %}
