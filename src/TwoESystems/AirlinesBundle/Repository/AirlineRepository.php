@@ -2,6 +2,9 @@
 
 namespace TwoESystems\AirlinesBundle\Repository;
 
+use Symfony\Component\Validator\Constraints\Count;
+use TwoESystems\AirlinesBundle\Entity\Country;
+
 /**
  * AirlineRepository
  *
@@ -10,4 +13,13 @@ namespace TwoESystems\AirlinesBundle\Repository;
  */
 class AirlineRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllByNameAndCountry(string $name, Country $country)
+    {
+        return $this->findBy(['title' => $name, 'country' => $country]);
+    }
+
+    public function getAllByCountry(Country $country, int $limit): array
+    {
+        return $this->findBy(['country' => $country], ['title' => 'DESC'], $limit);
+    }
 }

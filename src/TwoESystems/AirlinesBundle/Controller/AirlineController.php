@@ -2,18 +2,19 @@
 
 namespace TwoESystems\AirlinesBundle\Controller;
 
+use Symfony\Component\VarDumper\VarDumper;
 use TwoESystems\AirlinesBundle\Entity\Airline;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Airline controller.
  *
  * @Route("airlines")
  */
-class AirlineController extends Controller
-{
+class AirlineController extends Controller {
     /**
      * Lists all airline entities.
      *
@@ -130,7 +131,38 @@ class AirlineController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('airlines_delete', array('id' => $airline->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
+    }
+
+    /**
+     * Gets airlines by country.
+     *
+     * @Route("/country/{countryID}", name="airlines_by_country")
+     * @Method("GET")
+     */
+    public function getAirlinesByCountry($countryID)
+    {
+        echo "something something blahdglsjg";
+//        die();
+
+
+        /*symfony automagija - findbyNESTO radi match na property name u entitetu */
+//        $airlines = $this->get('airline.repository')->findByCountry($country);
+
+//        $airlines = $this->get('airline.repository')->findBy(['name' => 'FlyCroatia', 'country' => $country]);
+//        $airlines = $this->get('airline.repository')->getAllByNameAndCountry('FlyCroatia', $country);
+
+        foreach ($this->nazovijumirko($countryID) as $airline) {
+            VarDumper::dump($airline);
+
+        }
+        die();
+    }
+
+
+    public function nazovijumirko(string $countryID)
+    {
+        return $this->get('two_e_systems.airlines.service.sexy_airlines.top5')->blablabla($countryID);
+
     }
 }
