@@ -112,6 +112,11 @@ class Country
         return $this->countryName . " (" . $this->getCountryCode() . ")";
     }
 
+    public function getAirlines()
+    {
+        return $this->airlines;
+    }
+
 
 }
 

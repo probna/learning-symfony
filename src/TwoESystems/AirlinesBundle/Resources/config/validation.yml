@@ -1,0 +1,8 @@
+TwoESystems\AirlinesBundle\Entity\Airline:
+  properties:
+    tomo:
+      - NotBlank:
+          message: 'lsdkjfslkfj'
+  getters:
+    legal:
+      - 'IsTrue' : {message: 'not legal'}

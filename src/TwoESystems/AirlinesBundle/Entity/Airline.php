@@ -3,6 +3,7 @@
 namespace TwoESystems\AirlinesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Airline
@@ -10,8 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="airline")
  * @ORM\Entity(repositoryClass="TwoESystems\AirlinesBundle\Repository\AirlineRepository")
  */
-class Airline
-{
+class Airline {
     /**
      * @var int
      *
@@ -26,17 +26,53 @@ class Airline
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $title;
 
     /**
-     * @var int
+     * @var \TwoESystems\AirlinesBundle\Entity\Country
      *
      * Many Airlines have One Country.
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="Airline")
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="airlines")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      *
      */
-    private $country_id;
+    private $country;
+
+    /**
+     *
+     * */
+    public $tomo;
+
+    /**
+     *
+     */
+    public function isLegal()
+    {
+//        die('z');
+        if ($this->tomo === "123"){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTomo()
+    {
+        return $this->tomo;
+    }
+
+    /**
+     * @param mixed $tomo
+     */
+    public function setTomo1(\DateTime $tomo)
+    {
+        $this->tomo = $tomo;
+    }
+
 
     /**
      * Get id
@@ -57,7 +93,7 @@ class Airline
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->title = $name;
 
         return $this;
     }
@@ -69,7 +105,7 @@ class Airline
      */
     public function getName()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
@@ -79,9 +115,9 @@ class Airline
      *
      * @return Airline
      */
-    public function setCountryId($country_id)
+    public function setCountry($country)
     {
-        $this->country_id = $country_id;
+        $this->country = $country;
 
         return $this;
     }
@@ -89,11 +125,11 @@ class Airline
     /**
      * Get country
      *
-     * @return int
+     * @return \TwoESystems\AirlinesBundle\Entity\Country
      */
-    public function getCountryId()
+    public function getCountry()
     {
-        return $this->country_id;
+        return $this->country;
     }
 }
 
