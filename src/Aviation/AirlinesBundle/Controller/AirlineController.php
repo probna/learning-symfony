@@ -1,9 +1,9 @@
 <?php
 
-namespace TwoESystems\AirlinesBundle\Controller;
+namespace Aviation\AirlinesBundle\Controller;
 
 use Symfony\Component\VarDumper\VarDumper;
-use TwoESystems\AirlinesBundle\Entity\Airline;
+use Aviation\AirlinesBundle\Entity\Airline;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -25,7 +25,7 @@ class AirlineController extends Controller {
     {
         $em = $this->getDoctrine()->getManager();
 
-        $airlines = $em->getRepository('TwoESystemsAirlinesBundle:Airline')->findAll();
+        $airlines = $em->getRepository('AviationAirlinesBundle:Airline')->findAll();
 
         return $this->render('airline/index.html.twig', array(
             'airlines' => $airlines,
@@ -41,7 +41,7 @@ class AirlineController extends Controller {
     public function newAction(Request $request)
     {
         $airline = new Airline();
-        $form = $this->createForm('TwoESystems\AirlinesBundle\Form\AirlineType', $airline);
+        $form = $this->createForm('Aviation\AirlinesBundle\Form\AirlineType', $airline);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,7 +83,7 @@ class AirlineController extends Controller {
     public function editAction(Request $request, Airline $airline)
     {
         $deleteForm = $this->createDeleteForm($airline);
-        $editForm = $this->createForm('TwoESystems\AirlinesBundle\Form\AirlineType', $airline);
+        $editForm = $this->createForm('Aviation\AirlinesBundle\Form\AirlineType', $airline);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

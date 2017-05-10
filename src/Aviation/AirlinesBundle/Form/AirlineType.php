@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoESystems\AirlinesBundle\Form;
+namespace Aviation\AirlinesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -23,7 +23,7 @@ class AirlineType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'TwoESystems\AirlinesBundle\Entity\Airline'
+            'data_class' => 'Aviation\AirlinesBundle\Entity\Airline'
         ));
     }
 
@@ -32,7 +32,7 @@ class AirlineType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'twoesystems_airlinesbundle_airline';
+        return 'aviation_airlinesbundle_airline';
     }
 
 

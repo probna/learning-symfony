@@ -1,5 +1,5 @@
 two_e_systems_airlines:
-    resource: "@TwoESystemsAirlinesBundle/Controller/"
+    resource: "@AviationAirlinesBundle/Controller/"
     type:     annotation
     prefix:   /aviation
 

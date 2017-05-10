@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoESystems\AirlinesBundle\Tests\Controller;
+namespace Aviation\AirlinesBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,7 +19,7 @@ class AirlineControllerTest extends WebTestCase
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'twoesystems_airlinesbundle_airline[field_name]'  => 'Test',
+            'aviation_airlinesbundle_airline[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class AirlineControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'twoesystems_airlinesbundle_airline[field_name]'  => 'Foo',
+            'aviation_airlinesbundle_airline[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 
