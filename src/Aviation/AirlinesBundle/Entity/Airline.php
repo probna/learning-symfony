@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoESystems\AirlinesBundle\Entity;
+namespace Aviation\AirlinesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Airline
  *
  * @ORM\Table(name="airline")
- * @ORM\Entity(repositoryClass="TwoESystems\AirlinesBundle\Repository\AirlineRepository")
+ * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\AirlineRepository")
  */
 class Airline {
     /**
@@ -29,7 +29,7 @@ class Airline {
     private $title;
 
     /**
-     * @var \TwoESystems\AirlinesBundle\Entity\Country
+     * @var \Aviation\AirlinesBundle\Entity\Country
      *
      * Many Airlines have One Country.
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="airlines")
@@ -125,7 +125,7 @@ class Airline {
     /**
      * Get country
      *
-     * @return \TwoESystems\AirlinesBundle\Entity\Country
+     * @return \Aviation\AirlinesBundle\Entity\Country
      */
     public function getCountry()
     {

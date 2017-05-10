@@ -1,19 +1,19 @@
 <?php
 
 
-namespace TwoESystems\AirlinesBundle\Service;
+namespace Aviation\AirlinesBundle\Service;
 
 
-use TwoESystems\AirlinesBundle\Repository\AirlineRepository;
-use TwoESystems\AirlinesBundle\Repository\CountryRepository;
+use Aviation\AirlinesBundle\Repository\AirlineRepository;
+use Aviation\AirlinesBundle\Repository\CountryRepository;
 
 class SexyAirlines {
     /**
-     * @var \TwoESystems\AirlinesBundle\Repository\CountryRepository
+     * @var \Aviation\AirlinesBundle\Repository\CountryRepository
      */
     private $countryRepository;
     /**
-     * @var \TwoESystems\AirlinesBundle\Repository\AirlineRepository
+     * @var \Aviation\AirlinesBundle\Repository\AirlineRepository
      */
     private $airlineRepository;
     /**

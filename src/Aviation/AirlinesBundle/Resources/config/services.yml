@@ -1,23 +1,23 @@
 services:
-  two_e_systems.repository.airlines:
+  aviation.repository.airlines:
     class: Doctrine\ORM\EntityRepository
     factory: ['@doctrine.orm.default_entity_manager', getRepository]
     arguments:
-      - TwoESystems\AirlinesBundle\Entity\Airline
+      - Aviation\AirlinesBundle\Entity\Airline
   country.repository:
       class: Doctrine\ORM\EntityRepository
       factory: ['@doctrine.orm.default_entity_manager', getRepository]
       arguments:
-        - TwoESystems\AirlinesBundle\Entity\Country
+        - Aviation\AirlinesBundle\Entity\Country
   sexyairlines:
-      class: TwoESystems\AirlinesBundle\Service\SexyAirlines
+      class: Aviation\AirlinesBundle\Service\SexyAirlines
       arguments:
         - "@country.repository"
-        - "@two_e_systems.repository.airlines"
+        - "@aviation.repository.airlines"
         - "2"
   two_e_systems.airlines.service.sexy_airlines.top5:
-      class: TwoESystems\AirlinesBundle\Service\SexyAirlines
+      class: Aviation\AirlinesBundle\Service\SexyAirlines
       arguments:
         - "@country.repository"
-        - "@two_e_systems.repository.airlines"
+        - "@aviation.repository.airlines"
         - "%sexyairlinescount%"

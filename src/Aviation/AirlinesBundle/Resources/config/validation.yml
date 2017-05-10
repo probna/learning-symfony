@@ -1,4 +1,4 @@
-TwoESystems\AirlinesBundle\Entity\Airline:
+Aviation\AirlinesBundle\Entity\Airline:
   properties:
     tomo:
       - NotBlank:

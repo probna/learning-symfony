@@ -1,8 +1,8 @@
 <?php
 
-namespace TwoESystems\AirlinesBundle\Controller;
+namespace Aviation\AirlinesBundle\Controller;
 
-use TwoESystems\AirlinesBundle\Entity\Country;
+use Aviation\AirlinesBundle\Entity\Country;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +24,7 @@ class CountryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $countries = $em->getRepository('TwoESystemsAirlinesBundle:Country')->findAll();
+        $countries = $em->getRepository('AviationAirlinesBundle:Country')->findAll();
 
         return $this->render('country/index.html.twig', array(
             'countries' => $countries,

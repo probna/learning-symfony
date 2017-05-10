@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoESystems\AirlinesBundle\Form;
+namespace Aviation\AirlinesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class AirportType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'TwoESystems\AirlinesBundle\Entity\Airport'
+            'data_class' => 'Aviation\AirlinesBundle\Entity\Airport'
         ));
     }
 
@@ -31,7 +31,7 @@ class AirportType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'twoesystems_airlinesbundle_airport';
+        return 'aviation_airlinesbundle_airport';
     }
 
 

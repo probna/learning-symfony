@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoESystems\AirlinesBundle\Entity;
+namespace Aviation\AirlinesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Airport
  *
  * @ORM\Table(name="airport")
- * @ORM\Entity(repositoryClass="TwoESystems\AirlinesBundle\Repository\AirportRepository")
+ * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\AirportRepository")
  */
 class Airport
 {
