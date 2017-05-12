@@ -1,2 +1,14 @@
-Hello World!
-We're doing aviation stuff over here!
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airlines</title>
+</head>
+<body>
+<ul id="navigation">
+    {% for airline in airlines %}
+        <li><a href="">{{ airline }}</a></li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

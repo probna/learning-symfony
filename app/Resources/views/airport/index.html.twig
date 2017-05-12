@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Location</th>
+                <th>Country</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                 <td><a href="{{ path('airport_show', { 'id': airport.id }) }}">{{ airport.id }}</a></td>
                 <td>{{ airport.name }}</td>
                 <td>{{ airport.location }}</td>
+                <td>{{ airport.country }}</td>
                 <td>
                     <ul>
                         <li>

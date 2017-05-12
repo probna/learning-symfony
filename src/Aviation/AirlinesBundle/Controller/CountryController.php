@@ -39,9 +39,6 @@ class CountryController extends Controller
      */
     public function showAction(Country $country)
     {
-
-        print_r($country->getAirlines());
-        die();
         return $this->render('country/show.html.twig', array(
             'country' => $country,
         ));

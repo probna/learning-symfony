@@ -32,7 +32,7 @@ class Airline {
      * @var \Aviation\AirlinesBundle\Entity\Country
      *
      * Many Airlines have One Country.
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="airlines")
+     * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      *
      */
@@ -131,5 +131,15 @@ class Airline {
     {
         return $this->country;
     }
+
+    /**
+     *
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+
 }
 
