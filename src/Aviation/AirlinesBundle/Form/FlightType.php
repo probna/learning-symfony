@@ -6,23 +6,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AirportType extends AbstractType
-{
+class FlightType extends AbstractType {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('location')->add('country');
+        $builder->add('flightNumber')->add('flightCode')->add('departureTime')->add('arrivalTime')->add('airline')->add('departureAirport')->add('arrivalAirport');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Aviation\AirlinesBundle\Entity\Airport'
+            'data_class' => 'Aviation\AirlinesBundle\Entity\Flight'
         ));
     }
 
@@ -31,7 +30,7 @@ class AirportType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'aviation_airlinesbundle_airport';
+        return 'aviation_airlinesbundle_flight';
     }
 
 

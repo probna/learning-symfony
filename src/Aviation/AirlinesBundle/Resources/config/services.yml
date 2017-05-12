@@ -15,7 +15,7 @@ services:
         - "@country.repository"
         - "@aviation.repository.airlines"
         - "2"
-  two_e_systems.airlines.service.sexy_airlines.top5:
+  aviation.airlines.service.sexy_airlines.top5:
       class: Aviation\AirlinesBundle\Service\SexyAirlines
       arguments:
         - "@country.repository"

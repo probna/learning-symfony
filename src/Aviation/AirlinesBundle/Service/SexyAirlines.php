@@ -32,7 +32,7 @@ class SexyAirlines {
         $this->limit = $limit;
     }
 
-    public function blablabla(string $countryID)
+    public function getAirlinesByCountry(string $countryID)
     {
         $country = $this->countryRepository->find($countryID);
 

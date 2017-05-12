@@ -18,6 +18,7 @@ class Airport
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+//     * @ORM\OneToMany(targetEntity="Aviation\AirlinesBundle\Entity\Flight", mappedBy="departureAirport, arrivalAirport")
      */
     private $id;
 
@@ -29,12 +30,12 @@ class Airport
     private $name;
 
     /**
-     * @var int
+     * @var \Aviation\AirlinesBundle\Entity\Country
      *
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
-    private $countryId;
+    private $country;
 
     /**
      * @var string
@@ -85,9 +86,9 @@ class Airport
      *
      * @return Airport
      */
-    public function setCountryId($countryId)
+    public function setCountry($country)
     {
-        $this->countryId = $countryId;
+        $this->country = $country;
 
         return $this;
     }
@@ -97,9 +98,9 @@ class Airport
      *
      * @return int
      */
-    public function getCountryId()
+    public function getCountry()
     {
-        return $this->countryId;
+        return $this->country;
     }
 
     /**
@@ -125,5 +126,15 @@ class Airport
     {
         return $this->location;
     }
+
+    /**
+     * Return Airport name
+     */
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+
 }
 

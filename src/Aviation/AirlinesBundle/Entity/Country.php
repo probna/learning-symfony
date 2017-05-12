@@ -36,11 +36,6 @@ class Country
      */
     private $countryName;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Airline", mappedBy="country_id")
-     */
-    private $airlines;
-
     public function __construct()
     {
         $this->airlines = new ArrayCollection();

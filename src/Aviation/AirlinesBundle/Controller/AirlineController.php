@@ -2,6 +2,7 @@
 
 namespace Aviation\AirlinesBundle\Controller;
 
+use Aviation\AirlinesBundle\Entity\Country;
 use Symfony\Component\VarDumper\VarDumper;
 use Aviation\AirlinesBundle\Entity\Airline;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -162,7 +163,19 @@ class AirlineController extends Controller {
 
     public function nazovijumirko(string $countryID)
     {
-        return $this->get('two_e_systems.airlines.service.sexy_airlines.top5')->blablabla($countryID);
+        return $this->get('aviation.airlines.service.sexy_airlines.top5')->getAirlinesByCountry($countryID);
 
+    }
+
+    /**
+     * Gets airlines by name and country.
+     *
+     * @Route("/getByNameAndCountry", name="airlines_by_name_and_country")
+     * @Method("POST")
+     */
+    public function getAirlinesByNameAndCountry(Request $request)
+    {
+        $response = VarDumper::dump($request);
+        die();
     }
 }
