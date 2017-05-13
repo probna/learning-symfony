@@ -174,7 +174,7 @@ class Flight {
     /**
      * Get departureAirport
      *
-     * @return int
+     * @return \Aviation\AirlinesBundle\Entity\Airport
      */
     public function getDepartureAirport()
     {
@@ -222,7 +222,7 @@ class Flight {
     /**
      * Get arrivalAirport
      *
-     * @return int
+     * @return \Aviation\AirlinesBundle\Entity\Airport
      */
     public function getArrivalAirport()
     {
@@ -246,7 +246,7 @@ class Flight {
     /**
      * Get airline
      *
-     * @return int
+     * @return \Aviation\AirlinesBundle\Entity\Airline
      */
     public function getAirline()
     {
