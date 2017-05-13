@@ -152,24 +152,17 @@ class FlightController extends Controller {
     /**
      * Gets outbound flights from an airport
      *
-     * @param int $airportID
+     * @param \Aviation\AirlinesBundle\Entity\Airport $airport
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @internal param \Aviation\AirlinesBundle\Entity\Airport $airport
      *
-     * @internal param string $airportID
-     *
-     * @internal param \Aviation\AirlinesBundle\Entity\Airport $airport
-     *
-     * @Route("/from/{airportID}", name="outbound_flight_from")
+     * @Route("/from/{id}", name="outbound_flight_from")
      *
      * @Method("GET")
      */
-    public function showFlightsFrom($airportID)
+    public function showFlightsFrom(Airport $airport)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $airport = $em->getRepository('AviationAirlinesBundle:Airport')->find($airportID);
 
         $flights = $em->getRepository('AviationAirlinesBundle:Flight')->findByDepartureAirport($airport);
 
