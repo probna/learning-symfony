@@ -2,18 +2,20 @@
 
 namespace Aviation\AirlinesBundle\Controller;
 
+use Aviation\AirlinesBundle\Entity\Airport;
 use Aviation\AirlinesBundle\Entity\Flight;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Flight controller.
  *
  * @Route("flight")
  */
-class FlightController extends Controller
-{
+class FlightController extends Controller {
     /**
      * Lists all flight entities.
      *
@@ -36,6 +38,9 @@ class FlightController extends Controller
      *
      * @Route("/new", name="flight_new")
      * @Method({"GET", "POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -62,6 +67,9 @@ class FlightController extends Controller
      *
      * @Route("/{id}", name="flight_show")
      * @Method("GET")
+     * @param \Aviation\AirlinesBundle\Entity\Flight $flight
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Flight $flight)
     {
@@ -78,6 +86,10 @@ class FlightController extends Controller
      *
      * @Route("/{id}/edit", name="flight_edit")
      * @Method({"GET", "POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Aviation\AirlinesBundle\Entity\Flight $flight
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Flight $flight)
     {
@@ -103,6 +115,10 @@ class FlightController extends Controller
      *
      * @Route("/{id}", name="flight_delete")
      * @Method("DELETE")
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Aviation\AirlinesBundle\Entity\Flight $flight
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Flight $flight)
     {
@@ -130,7 +146,36 @@ class FlightController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('flight_delete', array('id' => $flight->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
+    }
+
+    /**
+     * Gets outbound flights from an airport
+     *
+     * @param int $airportID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param \Aviation\AirlinesBundle\Entity\Airport $airport
+     *
+     * @internal param string $airportID
+     *
+     * @internal param \Aviation\AirlinesBundle\Entity\Airport $airport
+     *
+     * @Route("/from/{airportID}", name="outbound_flight_from")
+     *
+     * @Method("GET")
+     */
+    public function showFlightsFrom($airportID)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $airport = $em->getRepository('AviationAirlinesBundle:Airport')->find($airportID);
+
+        $flights = $em->getRepository('AviationAirlinesBundle:Flight')->findByDepartureAirport($airport);
+
+        return $this->render('flight/index.html.twig', array(
+            'flights' => $flights,
+        ));
+
     }
 }
