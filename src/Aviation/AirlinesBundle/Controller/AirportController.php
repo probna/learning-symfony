@@ -5,15 +5,15 @@ namespace Aviation\AirlinesBundle\Controller;
 use Aviation\AirlinesBundle\Entity\Airport;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Airport controller.
  *
  * @Route("airport")
  */
-class AirportController extends Controller
-{
+class AirportController extends Controller {
     /**
      * Lists all airport entities.
      *
@@ -36,6 +36,9 @@ class AirportController extends Controller
      *
      * @Route("/new", name="airport_new")
      * @Method({"GET", "POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -62,6 +65,9 @@ class AirportController extends Controller
      *
      * @Route("/{id}", name="airport_show")
      * @Method("GET")
+     * @param \Aviation\AirlinesBundle\Entity\Airport $airport
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Airport $airport)
     {
@@ -78,6 +84,10 @@ class AirportController extends Controller
      *
      * @Route("/{id}/edit", name="airport_edit")
      * @Method({"GET", "POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Aviation\AirlinesBundle\Entity\Airport $airport
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Airport $airport)
     {
@@ -103,6 +113,10 @@ class AirportController extends Controller
      *
      * @Route("/{id}", name="airport_delete")
      * @Method("DELETE")
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Aviation\AirlinesBundle\Entity\Airport $airport
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Airport $airport)
     {
@@ -130,7 +144,8 @@ class AirportController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('airport_delete', array('id' => $airport->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
+
+
 }
