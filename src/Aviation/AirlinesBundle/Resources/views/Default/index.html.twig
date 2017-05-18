@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Airports</title>
-</head>
-<body>
-<ul id="navigation">
-    {% for airport in airports %}
-        <li><a href="{{ path('outbound_flight_from', {'id': airport.id}) }}">{{ airport }}</a></li>
-    {% endfor %}
-</ul>
+{% extends 'base.html.twig' %}
 
-</body>
-</html>
+{% block body %}
+<div class="list-group">
+    {% for airport in airports %}
+        <li class="list-group-item"><a href="{{ path('outbound_flight_from', {'id': airport.id}) }}" class="list-group-item active">{{ airport }}</a></li>
+    {% endfor %}
+</div>
+{% endblock %}
