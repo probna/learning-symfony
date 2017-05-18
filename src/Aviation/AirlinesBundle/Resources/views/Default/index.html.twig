@@ -6,7 +6,7 @@
 <body>
 <ul id="navigation">
     {% for airport in airports %}
-        <li><a href="{{ path('outbound_flight_from', {'airportID': airport.ID}) }}">{{ airport }}</a></li>
+        <li><a href="{{ path('outbound_flight_from', {'id': airport.id}) }}">{{ airport }}</a></li>
     {% endfor %}
 </ul>
 
