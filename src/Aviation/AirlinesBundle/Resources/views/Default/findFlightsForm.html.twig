@@ -1,3 +1,11 @@
-{{ form_start(flights_form) }}
-{{ form_widget(flights_form) }}
-{{ form_end(flights_form) }}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(flights_form) }}
+        {{ form_widget(flights_form) }}
+        {{ form_end(flights_form) }}
+    </div>
+
+
+{% endblock %}
