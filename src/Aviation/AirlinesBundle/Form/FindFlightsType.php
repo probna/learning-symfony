@@ -17,10 +17,10 @@ class FindFlightsType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('From', TextType::class)
-            ->add('To', TextType::class)
+            ->add('From', TextType::class, ['label' => 'Departure Airport Name',])
+            ->add('To', TextType::class, ['label' => 'Destination Airport Name'])
             ->add('On', DateType::class)
-            ->add('Search', SubmitType::class);
+            ->add('Search', SubmitType::class, ['attr' => ['class' => 'btn btn-lg btn-success btn-block']]);
     }
 
 
