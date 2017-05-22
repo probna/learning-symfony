@@ -12,14 +12,14 @@ use Symfony\Component\VarDumper\VarDumper;
 
 class DefaultController extends Controller {
     /**
-     * Show all airports
+     * Show a form for searching flights between two airports
      *
      * @Route("/")
      */
     public function indexAction(): Response
     {
 
-        $form = $this->createForm(FindFlightsType::class, null, ['action' => $this->generateUrl('search-submit')]);
+        $form = $this->createForm(FindFlightsType::class, null, ['action' => $this->generateUrl('search-flights')]);
         
         return $this->render('AviationAirlinesBundle:Default:findFlightsForm.html.twig',
             ['flights_form' => $form->createView()]);
@@ -29,7 +29,7 @@ class DefaultController extends Controller {
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @Method("POST")
-     * @Route("/search-submission", name="search-submit")
+     * @Route("/search-flights", name="search-flights")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
