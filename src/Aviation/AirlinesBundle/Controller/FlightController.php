@@ -162,9 +162,7 @@ class FlightController extends Controller {
      */
     public function showFlightsFrom(Airport $airport)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $flights = $em->getRepository('AviationAirlinesBundle:Flight')->findByDepartureAirport($airport);
+        $flights = $this->get('aviation.repository.flights')->findByDepartureAirport($airport);
 
         return $this->render('flight/index.html.twig', array(
             'flights' => $flights,
