@@ -23,6 +23,10 @@ class SexyAirlines {
 
     /**
      * SexyAirlines constructor.
+     *
+     * @param \Aviation\AirlinesBundle\Repository\CountryRepository $countryRepository
+     * @param \Aviation\AirlinesBundle\Repository\AirlineRepository $airlineRepository
+     * @param int $limit
      */
     public function __construct(CountryRepository $countryRepository, AirlineRepository $airlineRepository, int $limit)
     {
@@ -32,7 +36,12 @@ class SexyAirlines {
         $this->limit = $limit;
     }
 
-    public function getAirlinesByCountry(string $countryID)
+    /**
+     * @param string $countryID
+     *
+     * @return array
+     */
+    public function getAirlinesByCountry(string $countryID): array
     {
         $country = $this->countryRepository->find($countryID);
 
