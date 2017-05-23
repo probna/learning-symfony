@@ -14,7 +14,7 @@ class AirlineType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('country_id')->add('tomo');
+        $builder->add('name')->add('country')->add('tomo');
     }
     
     /**
