@@ -1,12 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="list-group">
-            {% for airport in airports %}
-                <li class="list-group-item"><a href="{{ path('outbound_flight_from', {'id': airport.id}) }}"
-                                               class="list-group-item active">{{ airport }}</a></li>
-            {% endfor %}
-        </div>
+    <div class="list-group">
+        {% for airport in airports %}
+            <li class="list-group-item"><a href="{{ path('outbound_flight_from', {'id': airport.id}) }}"
+                                           class="list-group-item active">{{ airport }}</a></li>
+        {% endfor %}
     </div>
 {% endblock %}
