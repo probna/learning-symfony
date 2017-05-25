@@ -3,19 +3,22 @@
 {% block body %}
     <h1>Airlines list</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for airline in airlines %}
             <tr>
                 <td><a href="{{ path('airlines_show', { 'id': airline.id }) }}">{{ airline.id }}</a></td>
                 <td>{{ airline.name }}</td>
+                <td><a href="{{ path('country_show', {'id' : airline.country.id}) }}"> {{ airline.country
+                        }}</a></td>
                 <td>
                     <ul>
                         <li>

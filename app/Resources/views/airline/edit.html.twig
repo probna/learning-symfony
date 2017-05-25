@@ -4,18 +4,16 @@
     <h1>Airline edit</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    {{ form_widget(edit_form) }}
+    <input class="list-group-item" type="submit" value="Edit"/>
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('airlines_index') }}">Back to the list</a>
-        </li>
-        <li>
+    <div class="list-group">
+            <a class="list-group-item" href="{{ path('airlines_index') }}">Back to the list</a>
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input class="list-group-item" type="submit" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+    </div>
 {% endblock %}

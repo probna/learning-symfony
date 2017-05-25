@@ -8,9 +8,10 @@
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('airlines_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="list-group">
+        <a href="{{ path('airlines_index') }}">Back to the list</a>
+    </div>
+
+
+
 {% endblock %}
