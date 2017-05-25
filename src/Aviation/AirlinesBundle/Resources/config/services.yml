@@ -14,6 +14,11 @@ services:
     factory: ['@doctrine.orm.default_entity_manager', getRepository]
     arguments:
       - Aviation\AirlinesBundle\Entity\Flight
+  aviation.repository.airports:
+      class: Doctrine\ORM\EntityRepository
+      factory: ['@doctrine.orm.default_entity_manager', getRepository]
+      arguments:
+        - Aviation\AirlinesBundle\Entity\Airport
   sexyairlines:
       class: Aviation\AirlinesBundle\Service\SexyAirlines
       arguments:
@@ -26,4 +31,9 @@ services:
         - "@country.repository"
         - "@aviation.repository.airlines"
         - "%sexyairlinescount%"
+  aviation.airlines.service.flight_search:
+      class: Aviation\AirlinesBundle\Service\FlightSearch
+      arguments:
+        - "@aviation.repository.airports"
+        - "@aviation.repository.flights"
 
