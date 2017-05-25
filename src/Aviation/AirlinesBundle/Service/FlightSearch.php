@@ -9,11 +9,11 @@ use Aviation\AirlinesBundle\Repository\AirportRepository;
 use Aviation\AirlinesBundle\Repository\FlightRepository;
 
 /**
- * Class FlightsService
+ * Class FlightSearch
  *
  * @package Aviation\AirlinesBundle\Service
  */
-class FlightsService {
+class FlightSearch {
     /**
      * @var \Aviation\AirlinesBundle\Repository\AirportRepository;
      */
@@ -25,7 +25,7 @@ class FlightsService {
 
 
     /**
-     * FlightsService constructor.
+     * FlightSearch constructor.
      *
      * @param \Aviation\AirlinesBundle\Repository\AirportRepository $airportRepository
      * @param \Aviation\AirlinesBundle\Repository\FlightRepository $flightRepository
@@ -37,7 +37,20 @@ class FlightsService {
         $this->flightRepository = $flightRepository;
     }
 
-    public function getFlightsBetweenAirportsOn(Airport $formAirport, Airport $toAirport, \DateTime $onDate)
+    /**
+     * @param \Aviation\AirlinesBundle\Entity\Airport $departureAirport
+     * @param \Aviation\AirlinesBundle\Entity\Airport $destinationAirport
+     * @param \DateTime $flightDate
+     *
+     * @return array
+     */
+    public function getFlightsBetweenAirportsOn(Airport $departureAirport, Airport $destinationAirport, \DateTime
+    $flightDate): array
     {
+        $flights = $this->flightRepository->findBy([
+            'departureAirport' => $departureAirport,
+            'arrivalAirport' => $destinationAirport
+        ]);
+        return $flights;
     }
 }
