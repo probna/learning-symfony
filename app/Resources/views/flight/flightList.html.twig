@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Flights list</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Id</th>
@@ -27,7 +27,7 @@
                 <td>{% if flight.departureAirport%}{{ flight.departureAirport}}{% endif %}</td>
                 <td>{% if flight.arrivalTime %}{{ flight.arrivalTime|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if flight.arrivalAirport%}{{ flight.arrivalAirport}}{% endif %}</td>
-                <td>{{ flight.airline }}</td>
+                <td> <a href="{{ path('airlines_show', { 'id': flight.airline.id }) }}" >{{ flight.airline }}</a></td>
 
             </tr>
         {% endfor %}
