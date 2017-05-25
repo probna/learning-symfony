@@ -7,8 +7,10 @@ use Aviation\AirlinesBundle\Entity\Flight;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\VarDumper\VarDumper;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Flight controller.
@@ -21,8 +23,10 @@ class FlightController extends Controller {
      *
      * @Route("/", name="flight_index")
      * @Method("GET")
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -40,7 +44,7 @@ class FlightController extends Controller {
      * @Method({"GET", "POST"})
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function newAction(Request $request)
     {
@@ -69,9 +73,9 @@ class FlightController extends Controller {
      * @Method("GET")
      * @param \Aviation\AirlinesBundle\Entity\Flight $flight
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function showAction(Flight $flight)
+    public function showAction(Flight $flight): Response
     {
         $deleteForm = $this->createDeleteForm($flight);
 
@@ -89,7 +93,7 @@ class FlightController extends Controller {
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Aviation\AirlinesBundle\Entity\Flight $flight
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function editAction(Request $request, Flight $flight)
     {
@@ -120,7 +124,7 @@ class FlightController extends Controller {
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Request $request, Flight $flight)
+    public function deleteAction(Request $request, Flight $flight): RedirectResponse
     {
         $form = $this->createDeleteForm($flight);
         $form->handleRequest($request);
@@ -154,17 +158,17 @@ class FlightController extends Controller {
      *
      * @param \Aviation\AirlinesBundle\Entity\Airport $airport
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/from/{id}", name="outbound_flight_from")
      *
      * @Method("GET")
      */
-    public function showFlightsFrom(Airport $airport)
+    public function showFlightsFrom(Airport $airport): Response
     {
         $flights = $this->get('aviation.repository.flights')->findByDepartureAirport($airport);
 
-        return $this->render('flight/index.html.twig', array(
+        return $this->render('flight/flightList.html.twig', array(
             'flights' => $flights,
         ));
 
