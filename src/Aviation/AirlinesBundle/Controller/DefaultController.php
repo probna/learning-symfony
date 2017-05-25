@@ -18,7 +18,6 @@ class DefaultController extends Controller {
      */
     public function indexAction(): Response
     {
-
         $form = $this->createForm(FindFlightsType::class, null, ['action' => $this->generateUrl('search-flights')]);
         
         return $this->render('AviationAirlinesBundle:Default:findFlightsForm.html.twig',
@@ -41,12 +40,16 @@ class DefaultController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
+            $departureAirport = $form->getData()['From'];
+            $destinationAirport = $form->getData()['To'];
+            $flightDate = $form->getData()['On'];
 
-            $airports = $em->getRepository('AviationAirlinesBundle:Airport')->findAll();
+            $flights = $this->get('aviation.airlines.service.flight_search')->getFlightsBetweenAirportsOn($departureAirport,
+                $destinationAirport, $flightDate);
 
-            return $this->render('AviationAirlinesBundle:Default:index.html.twig', array(
-                'airports' => $airports,
+            dump($flights);
+            return $this->render('flight/flightList.html.twig', array(
+                'flights' => $flights,
             ));
         }
     }
