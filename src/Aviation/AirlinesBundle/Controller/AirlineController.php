@@ -3,6 +3,8 @@
 namespace Aviation\AirlinesBundle\Controller;
 
 use Aviation\AirlinesBundle\Entity\Country;
+use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\VarDumper\VarDumper;
 use Aviation\AirlinesBundle\Entity\Airline;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -140,42 +142,30 @@ class AirlineController extends Controller {
      *
      * @Route("/country/{countryID}", name="airlines_by_country")
      * @Method("GET")
+     * @param int $countryID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getAirlinesByCountry($countryID)
+    public function getAirlinesByCountry(int $countryID): Response
     {
-        echo "something something blahdglsjg";
-//        die();
+        $countryAirlines = $this->getAirlinesForCountry($countryID);
 
-
-        /*symfony automagija - findbyNESTO radi match na property name u entitetu */
-//        $airlines = $this->get('airline.repository')->findByCountry($country);
-
-//        $airlines = $this->get('airline.repository')->findBy(['name' => 'FlyCroatia', 'country' => $country]);
-//        $airlines = $this->get('airline.repository')->getAllByNameAndCountry('FlyCroatia', $country);
-
-        foreach ($this->nazovijumirko($countryID) as $airline) {
-            VarDumper::dump($airline);
-
-        }
-        die();
+        return $this->render('airline/index.html.twig', array(
+            'airlines' => $countryAirlines,
+        ));
     }
 
-
-    public function nazovijumirko(string $countryID)
-    {
-        return $this->get('aviation.airlines.service.sexy_airlines.top5')->getAirlinesByCountry($countryID);
-
-    }
 
     /**
-     * Gets airlines by name and country.
+     * @param string $countryID
      *
-     * @Route("/getByNameAndCountry", name="airlines_by_name_and_country")
-     * @Method("POST")
+     * @return array
      */
-    public function getAirlinesByNameAndCountry(Request $request)
+    private function getAirlinesForCountry(string $countryID): array
     {
-        $response = VarDumper::dump($request);
-        die();
+        return $this->get('sexyairlines')->getAirlinesByCountry($countryID);
+
     }
+
+
 }
