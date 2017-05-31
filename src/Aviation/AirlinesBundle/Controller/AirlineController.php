@@ -150,7 +150,7 @@ class AirlineController extends Controller {
     {
         $countryAirlines = $this->getAirlinesForCountry($countryID);
 
-        return $this->render('airline/index.html.twig', array(
+        return $this->render('airline/countryAirlines.html.twig', array(
             'airlines' => $countryAirlines,
         ));
     }
