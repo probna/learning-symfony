@@ -2,6 +2,7 @@
 
 namespace Aviation\AirlinesBundle\Controller;
 
+use Aviation\AirlinesBundle\Entity\FlightSearch;
 use Aviation\AirlinesBundle\Form\FindFlightsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,15 +35,17 @@ class DefaultController extends Controller {
      */
     public function handleSearchRequest(Request $request)
     {
-        $form = $this->createForm(FindFlightsType::class);
+        $flightSearch = new FlightSearch();
+
+        $form = $this->createForm(FindFlightsType::class, $flightSearch);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $departureAirport = $form->getData()['From'];
-            $destinationAirport = $form->getData()['To'];
-            $flightDate = $form->getData()['On'];
+            $departureAirport = $flightSearch->getDepartureAirport();
+            $destinationAirport = $flightSearch->getArrivalAirport();
+            $flightDate = $flightSearch->getDate();
 
             $flights = $this->get('aviation.airlines.service.flight_search')->getFlightsBetweenAirportsOn($departureAirport,
                 $destinationAirport, $flightDate);
@@ -52,6 +55,9 @@ class DefaultController extends Controller {
                 'flights' => $flights,
             ));
         }
+        return $this->render('AviationAirlinesBundle:Default:findFlightsForm.html.twig',
+            ['flights_form' => $form->createView()]);
+
     }
 
 
