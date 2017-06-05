@@ -38,41 +38,6 @@ class Airline {
      */
     private $country;
 
-    /**
-     *
-     * */
-    public $tomo;
-
-    /**
-     *
-     */
-    public function isLegal()
-    {
-//        die('z');
-        if ($this->tomo === "123"){
-            return true;
-        }
-
-        return false;
-
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTomo()
-    {
-        return $this->tomo;
-    }
-
-    /**
-     * @param mixed $tomo
-     */
-    public function setTomo1(\DateTime $tomo)
-    {
-        $this->tomo = $tomo;
-    }
-
 
     /**
      * Get id
