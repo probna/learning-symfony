@@ -3,6 +3,7 @@
 namespace Aviation\AirlinesBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * FlightSearch
  *
@@ -17,15 +18,14 @@ class FlightSearch {
     private $date;
 
     /**
-     * @var \Aviation\AirlinesBundle\Entity\Airport
+     * @var Airport
      *
      */
     private $departureAirport;
 
 
-
     /**
-     * @var \Aviation\AirlinesBundle\Entity\Airport
+     * @var Airport
      *
      */
     private $arrivalAirport;
@@ -53,9 +53,9 @@ class FlightSearch {
     }
 
     /**
-     * @param \Aviation\AirlinesBundle\Entity\Airport $departureAirport
+     * @param Airport $departureAirport
      */
-    public function setDepartureAirport(\Aviation\AirlinesBundle\Entity\Airport $departureAirport)
+    public function setDepartureAirport(Airport $departureAirport)
     {
         $this->departureAirport = $departureAirport;
     }
@@ -68,9 +68,9 @@ class FlightSearch {
     }
 
     /**
-     * @param \Aviation\AirlinesBundle\Entity\Airport $arrivalAirport
+     * @param Airport $arrivalAirport
      */
-    public function setArrivalAirport(\Aviation\AirlinesBundle\Entity\Airport $arrivalAirport)
+    public function setArrivalAirport(Airport $arrivalAirport)
     {
         $this->arrivalAirport = $arrivalAirport;
     }
@@ -80,11 +80,9 @@ class FlightSearch {
      *
      * @Assert\IsTrue(message="Departure and destination airports cannot be the same.")
      */
-    public function isDepartureAirportSameAsDestination(){
-        if ($this->arrivalAirport !== $this->departureAirport){
-            return true;
-        }
-        return false;
+    public function isDepartureAirportSameAsDestination(): bool
+    {
+        return $this->arrivalAirport !== $this->departureAirport;
     }
 
 
