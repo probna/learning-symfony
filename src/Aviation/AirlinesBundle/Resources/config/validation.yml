@@ -1,8 +1,8 @@
-Aviation\AirlinesBundle\Entity\Airline:
-  properties:
-    tomo:
-      - NotBlank:
-          message: 'lsdkjfslkfj'
-  getters:
-    legal:
-      - 'IsTrue' : {message: 'not legal'}
+#Aviation\AirlinesBundle\Entity\Airline:
+#  properties:
+#    tomo:
+#      - NotBlank:
+#          message: 'this was a hidden field, not meant to be left blank'
+#  getters:
+#    legal:
+#      - 'IsTrue' : {message: 'not legal'}
