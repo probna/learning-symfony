@@ -141,7 +141,7 @@ class Flight {
      *
      * @return Flight
      */
-    public function setDepartureTime($departureTime)
+    public function setDepartureTime(\DateTime $departureTime)
     {
         $this->departureTime = $departureTime;
 
@@ -189,7 +189,7 @@ class Flight {
      *
      * @return Flight
      */
-    public function setArrivalTime($arrivalTime)
+    public function setArrivalTime(\DateTime $arrivalTime)
     {
         $this->arrivalTime = $arrivalTime;
 
@@ -260,6 +260,15 @@ class Flight {
     public function isDepartureAirportDifferentThanArrivalAirport(): bool
     {
         return $this->departureAirport !== $this->arrivalAirport;
+    }
+
+    /**
+     *
+     * @Assert\IsTrue(message="Arrival date and time cannot be less than or equal to the departure time.")
+     */
+    public function isArrivalDateTimeGreaterThanDepartureDateTime(): bool
+    {
+        return $this->arrivalTime > $this->departureTime;
     }
 }
 
