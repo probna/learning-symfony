@@ -3,6 +3,7 @@
 namespace Aviation\AirlinesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Flight
@@ -251,6 +252,14 @@ class Flight {
     public function getAirline()
     {
         return $this->airline;
+    }
+
+    /**
+     * @Assert\IsTrue(message="Departure and Arrival airports cannot be the same.")
+     */
+    public function isDepartureAirportDifferentThanArrivalAirport(): bool
+    {
+        return $this->departureAirport !== $this->arrivalAirport;
     }
 }
 
