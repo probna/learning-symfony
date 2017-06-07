@@ -17,5 +17,6 @@ return PhpCsFixer\Config::create()
         'ordered_imports' => true,
         'phpdoc_order' => true,
     ))
+    ->setCacheFile(__DIR__.'/vendor/.php_cs.cache')
     ->setFinder($finder)
 ;
