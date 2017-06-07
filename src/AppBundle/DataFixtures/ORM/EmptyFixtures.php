@@ -37,6 +37,13 @@ class EmptyFixtures extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->persist($pleso);
 
+        $split = new Airport();
+        $split->setCountry($croatia);
+        $split->setName('Split');
+        $split->setLocation('GPS');
+
+        $manager->persist($split);
+
         //$obj = new \stdClass();
         //$manager->persist($obj);
 
