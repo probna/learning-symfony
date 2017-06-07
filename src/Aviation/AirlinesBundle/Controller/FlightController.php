@@ -4,25 +4,26 @@ namespace Aviation\AirlinesBundle\Controller;
 
 use Aviation\AirlinesBundle\Entity\Airport;
 use Aviation\AirlinesBundle\Entity\Flight;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 
 /**
  * Flight controller.
  *
  * @Route("flight")
  */
-class FlightController extends Controller {
+class FlightController extends Controller
+{
     /**
      * Lists all flight entities.
      *
      * @Route("/", name="flight_index")
      * @Method("GET")
+     *
      * @throws \InvalidArgumentException
      * @throws \LogicException
      */
@@ -32,9 +33,9 @@ class FlightController extends Controller {
 
         $flights = $em->getRepository('AviationAirlinesBundle:Flight')->findAll();
 
-        return $this->render('flight/index.html.twig', array(
+        return $this->render('flight/index.html.twig', [
             'flights' => $flights,
-        ));
+        ]);
     }
 
     /**
@@ -42,6 +43,7 @@ class FlightController extends Controller {
      *
      * @Route("/new", name="flight_new")
      * @Method({"GET", "POST"})
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -49,7 +51,7 @@ class FlightController extends Controller {
     public function newAction(Request $request)
     {
         $flight = new Flight();
-        $form = $this->createForm('Aviation\AirlinesBundle\Form\FlightType', $flight);
+        $form   = $this->createForm('Aviation\AirlinesBundle\Form\FlightType', $flight);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,13 +59,13 @@ class FlightController extends Controller {
             $em->persist($flight);
             $em->flush();
 
-            return $this->redirectToRoute('flight_show', array('id' => $flight->getId()));
+            return $this->redirectToRoute('flight_show', ['id' => $flight->getId()]);
         }
 
-        return $this->render('flight/new.html.twig', array(
+        return $this->render('flight/new.html.twig', [
             'flight' => $flight,
-            'form' => $form->createView(),
-        ));
+            'form'   => $form->createView(),
+        ]);
     }
 
     /**
@@ -71,6 +73,7 @@ class FlightController extends Controller {
      *
      * @Route("/{id}", name="flight_show")
      * @Method("GET")
+     *
      * @param \Aviation\AirlinesBundle\Entity\Flight $flight
      *
      * @return Response
@@ -79,10 +82,10 @@ class FlightController extends Controller {
     {
         $deleteForm = $this->createDeleteForm($flight);
 
-        return $this->render('flight/show.html.twig', array(
-            'flight' => $flight,
+        return $this->render('flight/show.html.twig', [
+            'flight'      => $flight,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -90,28 +93,29 @@ class FlightController extends Controller {
      *
      * @Route("/{id}/edit", name="flight_edit")
      * @Method({"GET", "POST"})
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Aviation\AirlinesBundle\Entity\Flight $flight
+     * @param \Aviation\AirlinesBundle\Entity\Flight    $flight
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function editAction(Request $request, Flight $flight)
     {
         $deleteForm = $this->createDeleteForm($flight);
-        $editForm = $this->createForm('Aviation\AirlinesBundle\Form\FlightType', $flight);
+        $editForm   = $this->createForm('Aviation\AirlinesBundle\Form\FlightType', $flight);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('flight_edit', array('id' => $flight->getId()));
+            return $this->redirectToRoute('flight_edit', ['id' => $flight->getId()]);
         }
 
-        return $this->render('flight/edit.html.twig', array(
-            'flight' => $flight,
-            'edit_form' => $editForm->createView(),
+        return $this->render('flight/edit.html.twig', [
+            'flight'      => $flight,
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -119,8 +123,9 @@ class FlightController extends Controller {
      *
      * @Route("/{id}", name="flight_delete")
      * @Method("DELETE")
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Aviation\AirlinesBundle\Entity\Flight $flight
+     * @param \Aviation\AirlinesBundle\Entity\Flight    $flight
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -148,13 +153,13 @@ class FlightController extends Controller {
     private function createDeleteForm(Flight $flight)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('flight_delete', array('id' => $flight->getId())))
+            ->setAction($this->generateUrl('flight_delete', ['id' => $flight->getId()]))
             ->setMethod('DELETE')
             ->getForm();
     }
 
     /**
-     * Gets outbound flights from an airport
+     * Gets outbound flights from an airport.
      *
      * @param \Aviation\AirlinesBundle\Entity\Airport $airport
      *
@@ -168,9 +173,8 @@ class FlightController extends Controller {
     {
         $flights = $this->get('aviation.repository.flights')->findByDepartureAirport($airport);
 
-        return $this->render('flight/flightList.html.twig', array(
+        return $this->render('flight/flightList.html.twig', [
             'flights' => $flights,
-        ));
-
+        ]);
     }
 }

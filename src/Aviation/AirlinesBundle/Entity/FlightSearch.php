@@ -5,33 +5,25 @@ namespace Aviation\AirlinesBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * FlightSearch
- *
+ * FlightSearch.
  */
-class FlightSearch {
-
-
+class FlightSearch
+{
     /**
      * @var \DateTime
-     *
      */
     private $date;
 
     /**
      * @var Airport
-     *
      */
     private $departureAirport;
 
-
     /**
      * @var Airport
-     *
      */
     private $arrivalAirport;
 
-    /**
-     */
     public function getDate()
     {
         return $this->date;
@@ -45,8 +37,6 @@ class FlightSearch {
         $this->date = $date;
     }
 
-    /**
-     */
     public function getDepartureAirport()
     {
         return $this->departureAirport;
@@ -60,8 +50,6 @@ class FlightSearch {
         $this->departureAirport = $departureAirport;
     }
 
-    /**
-     */
     public function getArrivalAirport()
     {
         return $this->arrivalAirport;
@@ -75,16 +63,11 @@ class FlightSearch {
         $this->arrivalAirport = $arrivalAirport;
     }
 
-
     /**
-     *
      * @Assert\IsTrue(message="Departure and destination airports cannot be the same.")
      */
     public function isDepartureAirportSameAsDestination(): bool
     {
         return $this->arrivalAirport !== $this->departureAirport;
     }
-
-
 }
-

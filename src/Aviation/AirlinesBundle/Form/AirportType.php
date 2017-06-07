@@ -15,15 +15,15 @@ class AirportType extends AbstractType
     {
         $builder->add('name')->add('location')->add('country');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Aviation\AirlinesBundle\Entity\Airport'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'Aviation\AirlinesBundle\Entity\Airport',
+        ]);
     }
 
     /**
@@ -33,6 +33,4 @@ class AirportType extends AbstractType
     {
         return 'aviation_airlinesbundle_airport';
     }
-
-
 }

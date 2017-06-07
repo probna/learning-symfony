@@ -1,19 +1,16 @@
 <?php
 
-
 namespace Aviation\AirlinesBundle\Service;
-
 
 use Aviation\AirlinesBundle\Entity\Airport;
 use Aviation\AirlinesBundle\Repository\AirportRepository;
 use Aviation\AirlinesBundle\Repository\FlightRepository;
 
 /**
- * Class FlightSearch
- *
- * @package Aviation\AirlinesBundle\Service
+ * Class FlightSearch.
  */
-class FlightSearch {
+class FlightSearch
+{
     /**
      * @var \Aviation\AirlinesBundle\Repository\AirportRepository;
      */
@@ -23,24 +20,22 @@ class FlightSearch {
      */
     private $flightRepository;
 
-
     /**
      * FlightSearch constructor.
      *
      * @param \Aviation\AirlinesBundle\Repository\AirportRepository $airportRepository
-     * @param \Aviation\AirlinesBundle\Repository\FlightRepository $flightRepository
+     * @param \Aviation\AirlinesBundle\Repository\FlightRepository  $flightRepository
      */
     public function __construct(AirportRepository $airportRepository, FlightRepository $flightRepository)
     {
-
         $this->airportRepository = $airportRepository;
-        $this->flightRepository = $flightRepository;
+        $this->flightRepository  = $flightRepository;
     }
 
     /**
      * @param \Aviation\AirlinesBundle\Entity\Airport $departureAirport
      * @param \Aviation\AirlinesBundle\Entity\Airport $destinationAirport
-     * @param \DateTime $flightDate
+     * @param \DateTime                               $flightDate
      *
      * @return array
      */
@@ -49,8 +44,9 @@ class FlightSearch {
     {
         $flights = $this->flightRepository->findBy([
             'departureAirport' => $departureAirport,
-            'arrivalAirport' => $destinationAirport
+            'arrivalAirport'   => $destinationAirport,
         ]);
+
         return $flights;
     }
 }

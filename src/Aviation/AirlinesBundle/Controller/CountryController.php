@@ -3,9 +3,9 @@
 namespace Aviation\AirlinesBundle\Controller;
 
 use Aviation\AirlinesBundle\Entity\Country;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Country controller.
@@ -26,9 +26,9 @@ class CountryController extends Controller
 
         $countries = $em->getRepository('AviationAirlinesBundle:Country')->findAll();
 
-        return $this->render('country/index.html.twig', array(
+        return $this->render('country/index.html.twig', [
             'countries' => $countries,
-        ));
+        ]);
     }
 
     /**
@@ -39,8 +39,8 @@ class CountryController extends Controller
      */
     public function showAction(Country $country)
     {
-        return $this->render('country/show.html.twig', array(
+        return $this->render('country/show.html.twig', [
             'country' => $country,
-        ));
+        ]);
     }
 }

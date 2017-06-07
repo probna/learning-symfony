@@ -3,17 +3,18 @@
 namespace Aviation\AirlinesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Flight
+ * Flight.
  *
  * @ORM\Table(name="flight")
  * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\FlightRepository")
  * @UniqueEntity("flightNumber")
  */
-class Flight {
+class Flight
+{
     /**
      * @var int
      *
@@ -77,9 +78,8 @@ class Flight {
      */
     private $airline;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -89,9 +89,9 @@ class Flight {
     }
 
     /**
-     * Set flightNumber
+     * Set flightNumber.
      *
-     * @param integer $flightNumber
+     * @param int $flightNumber
      *
      * @return Flight
      */
@@ -103,7 +103,7 @@ class Flight {
     }
 
     /**
-     * Get flightNumber
+     * Get flightNumber.
      *
      * @return int
      */
@@ -113,7 +113,7 @@ class Flight {
     }
 
     /**
-     * Set flightCode
+     * Set flightCode.
      *
      * @param string $flightCode
      *
@@ -127,7 +127,7 @@ class Flight {
     }
 
     /**
-     * Get flightCode
+     * Get flightCode.
      *
      * @return string
      */
@@ -137,7 +137,7 @@ class Flight {
     }
 
     /**
-     * Set departureTime
+     * Set departureTime.
      *
      * @param \DateTime $departureTime
      *
@@ -151,7 +151,7 @@ class Flight {
     }
 
     /**
-     * Get departureTime
+     * Get departureTime.
      *
      * @return \DateTime
      */
@@ -161,9 +161,9 @@ class Flight {
     }
 
     /**
-     * Set departureAirport
+     * Set departureAirport.
      *
-     * @param integer $departureAirport
+     * @param int $departureAirport
      *
      * @return Flight
      */
@@ -175,7 +175,7 @@ class Flight {
     }
 
     /**
-     * Get departureAirport
+     * Get departureAirport.
      *
      * @return \Aviation\AirlinesBundle\Entity\Airport
      */
@@ -185,7 +185,7 @@ class Flight {
     }
 
     /**
-     * Set arrivalTime
+     * Set arrivalTime.
      *
      * @param \DateTime $arrivalTime
      *
@@ -199,7 +199,7 @@ class Flight {
     }
 
     /**
-     * Get arrivalTime
+     * Get arrivalTime.
      *
      * @return \DateTime
      */
@@ -209,9 +209,9 @@ class Flight {
     }
 
     /**
-     * Set arrivalAirport
+     * Set arrivalAirport.
      *
-     * @param integer $arrivalAirport
+     * @param int $arrivalAirport
      *
      * @return Flight
      */
@@ -223,7 +223,7 @@ class Flight {
     }
 
     /**
-     * Get arrivalAirport
+     * Get arrivalAirport.
      *
      * @return \Aviation\AirlinesBundle\Entity\Airport
      */
@@ -233,9 +233,9 @@ class Flight {
     }
 
     /**
-     * Set airline
+     * Set airline.
      *
-     * @param integer $airline
+     * @param int $airline
      *
      * @return Flight
      */
@@ -247,7 +247,7 @@ class Flight {
     }
 
     /**
-     * Get airline
+     * Get airline.
      *
      * @return \Aviation\AirlinesBundle\Entity\Airline
      */
@@ -265,7 +265,6 @@ class Flight {
     }
 
     /**
-     *
      * @Assert\IsTrue(message="Arrival date and time cannot be less than or equal to the departure time.")
      */
     public function isArrivalDateTimeGreaterThanDepartureDateTime(): bool
@@ -273,4 +272,3 @@ class Flight {
         return $this->arrivalTime > $this->departureTime;
     }
 }
-

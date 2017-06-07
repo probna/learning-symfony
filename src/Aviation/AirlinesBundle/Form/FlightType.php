@@ -6,7 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FlightType extends AbstractType {
+class FlightType extends AbstractType
+{
     /**
      * {@inheritdoc}
      */
@@ -20,9 +21,9 @@ class FlightType extends AbstractType {
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Aviation\AirlinesBundle\Entity\Flight'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'Aviation\AirlinesBundle\Entity\Flight',
+        ]);
     }
 
     /**
@@ -32,6 +33,4 @@ class FlightType extends AbstractType {
     {
         return 'aviation_airlinesbundle_flight';
     }
-
-
 }

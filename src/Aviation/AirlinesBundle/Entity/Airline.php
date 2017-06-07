@@ -3,15 +3,15 @@
 namespace Aviation\AirlinesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Airline
+ * Airline.
  *
  * @ORM\Table(name="airline")
  * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\AirlineRepository")
  */
-class Airline {
+class Airline
+{
     /**
      * @var int
      *
@@ -31,16 +31,14 @@ class Airline {
     /**
      * @var \Aviation\AirlinesBundle\Entity\Country
      *
-     * Many Airlines have One Country.
+     * Many Airlines have One Country
      * @ORM\ManyToOne(targetEntity="Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
-     *
      */
     private $country;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -50,7 +48,7 @@ class Airline {
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -64,7 +62,7 @@ class Airline {
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -74,9 +72,9 @@ class Airline {
     }
 
     /**
-     * Set country
+     * Set country.
      *
-     * @param integer $country_id
+     * @param int $country_id
      *
      * @return Airline
      */
@@ -88,7 +86,7 @@ class Airline {
     }
 
     /**
-     * Get country
+     * Get country.
      *
      * @return \Aviation\AirlinesBundle\Entity\Country
      */
@@ -97,14 +95,8 @@ class Airline {
         return $this->country;
     }
 
-    /**
-     *
-     */
     public function __toString()
     {
         return $this->title;
     }
-
-
 }
-

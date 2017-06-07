@@ -2,11 +2,11 @@
 
 namespace Aviation\AirlinesBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Country
+ * Country.
  *
  * @ORM\Table(name="country")
  * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\CountryRepository")
@@ -42,7 +42,7 @@ class Country
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -52,7 +52,7 @@ class Country
     }
 
     /**
-     * Set countryCode
+     * Set countryCode.
      *
      * @param string $countryCode
      *
@@ -66,7 +66,7 @@ class Country
     }
 
     /**
-     * Get countryCode
+     * Get countryCode.
      *
      * @return string
      */
@@ -76,7 +76,7 @@ class Country
     }
 
     /**
-     * Set countryName
+     * Set countryName.
      *
      * @param string $countryName
      *
@@ -90,7 +90,7 @@ class Country
     }
 
     /**
-     * Get countryName
+     * Get countryName.
      *
      * @return string
      */
@@ -99,19 +99,13 @@ class Country
         return $this->countryName;
     }
 
-    /**
-     *
-     */
     public function __toString()
     {
-        return $this->countryName . " (" . $this->getCountryCode() . ")";
+        return $this->countryName.' ('.$this->getCountryCode().')';
     }
 
     public function getAirlines()
     {
         return $this->airlines;
     }
-
-
 }
-

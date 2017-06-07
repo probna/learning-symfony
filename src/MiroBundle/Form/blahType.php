@@ -15,15 +15,15 @@ class blahType extends AbstractType
     {
         $builder->add('name')->add('age')->add('tomo');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'MiroBundle\Entity\blah'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'MiroBundle\Entity\blah',
+        ]);
     }
 
     /**
@@ -33,6 +33,4 @@ class blahType extends AbstractType
     {
         return 'mirobundle_blah';
     }
-
-
 }

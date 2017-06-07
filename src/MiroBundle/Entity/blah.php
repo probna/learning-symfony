@@ -5,12 +5,13 @@ namespace MiroBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * blah
+ * blah.
  *
  * @ORM\Table(name="blah")
  * @ORM\Entity(repositoryClass="MiroBundle\Repository\blahRepository")
  */
-class blah {
+class blah
+{
     /**
      * @var int
      *
@@ -41,9 +42,8 @@ class blah {
      */
     private $tomo;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -53,7 +53,7 @@ class blah {
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -67,7 +67,7 @@ class blah {
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -77,9 +77,9 @@ class blah {
     }
 
     /**
-     * Set age
+     * Set age.
      *
-     * @param integer $age
+     * @param int $age
      *
      * @return blah
      */
@@ -91,7 +91,7 @@ class blah {
     }
 
     /**
-     * Get age
+     * Get age.
      *
      * @return int
      */
@@ -115,7 +115,4 @@ class blah {
     {
         $this->tomo = $tomo;
     }
-
-    
 }
-
