@@ -3,9 +3,9 @@
 namespace Aviation\AirlinesBundle\Controller;
 
 use Aviation\AirlinesBundle\Entity\Airport;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -13,7 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("airport")
  */
-class AirportController extends Controller {
+class AirportController extends Controller
+{
     /**
      * Lists all airport entities.
      *
@@ -26,9 +27,9 @@ class AirportController extends Controller {
 
         $airports = $em->getRepository('AviationAirlinesBundle:Airport')->findAll();
 
-        return $this->render('airport/index.html.twig', array(
+        return $this->render('airport/index.html.twig', [
             'airports' => $airports,
-        ));
+        ]);
     }
 
     /**
@@ -36,6 +37,7 @@ class AirportController extends Controller {
      *
      * @Route("/new", name="airport_new")
      * @Method({"GET", "POST"})
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -43,7 +45,7 @@ class AirportController extends Controller {
     public function newAction(Request $request)
     {
         $airport = new Airport();
-        $form = $this->createForm('Aviation\AirlinesBundle\Form\AirportType', $airport);
+        $form    = $this->createForm('Aviation\AirlinesBundle\Form\AirportType', $airport);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,13 +53,13 @@ class AirportController extends Controller {
             $em->persist($airport);
             $em->flush();
 
-            return $this->redirectToRoute('airport_show', array('id' => $airport->getId()));
+            return $this->redirectToRoute('airport_show', ['id' => $airport->getId()]);
         }
 
-        return $this->render('airport/new.html.twig', array(
+        return $this->render('airport/new.html.twig', [
             'airport' => $airport,
-            'form' => $form->createView(),
-        ));
+            'form'    => $form->createView(),
+        ]);
     }
 
     /**
@@ -65,6 +67,7 @@ class AirportController extends Controller {
      *
      * @Route("/{id}", name="airport_show")
      * @Method("GET")
+     *
      * @param \Aviation\AirlinesBundle\Entity\Airport $airport
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -73,10 +76,10 @@ class AirportController extends Controller {
     {
         $deleteForm = $this->createDeleteForm($airport);
 
-        return $this->render('airport/show.html.twig', array(
-            'airport' => $airport,
+        return $this->render('airport/show.html.twig', [
+            'airport'     => $airport,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -84,28 +87,29 @@ class AirportController extends Controller {
      *
      * @Route("/{id}/edit", name="airport_edit")
      * @Method({"GET", "POST"})
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Aviation\AirlinesBundle\Entity\Airport $airport
+     * @param \Aviation\AirlinesBundle\Entity\Airport   $airport
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Airport $airport)
     {
         $deleteForm = $this->createDeleteForm($airport);
-        $editForm = $this->createForm('Aviation\AirlinesBundle\Form\AirportType', $airport);
+        $editForm   = $this->createForm('Aviation\AirlinesBundle\Form\AirportType', $airport);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('airport_edit', array('id' => $airport->getId()));
+            return $this->redirectToRoute('airport_edit', ['id' => $airport->getId()]);
         }
 
-        return $this->render('airport/edit.html.twig', array(
-            'airport' => $airport,
-            'edit_form' => $editForm->createView(),
+        return $this->render('airport/edit.html.twig', [
+            'airport'     => $airport,
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -113,8 +117,9 @@ class AirportController extends Controller {
      *
      * @Route("/{id}", name="airport_delete")
      * @Method("DELETE")
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Aviation\AirlinesBundle\Entity\Airport $airport
+     * @param \Aviation\AirlinesBundle\Entity\Airport   $airport
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -142,10 +147,8 @@ class AirportController extends Controller {
     private function createDeleteForm(Airport $airport)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('airport_delete', array('id' => $airport->getId())))
+            ->setAction($this->generateUrl('airport_delete', ['id' => $airport->getId()]))
             ->setMethod('DELETE')
             ->getForm();
     }
-
-
 }

@@ -5,7 +5,7 @@ namespace Aviation\AirlinesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Airport
+ * Airport.
  *
  * @ORM\Table(name="airport")
  * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\AirportRepository")
@@ -18,7 +18,7 @@ class Airport
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-//     * @ORM\OneToMany(targetEntity="Aviation\AirlinesBundle\Entity\Flight", mappedBy="departureAirport, arrivalAirport")
+     //     * @ORM\OneToMany(targetEntity="Aviation\AirlinesBundle\Entity\Flight", mappedBy="departureAirport, arrivalAirport")
      */
     private $id;
 
@@ -44,9 +44,8 @@ class Airport
      */
     private $location;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -56,7 +55,7 @@ class Airport
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -70,7 +69,7 @@ class Airport
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -80,9 +79,9 @@ class Airport
     }
 
     /**
-     * Set countryId
+     * Set countryId.
      *
-     * @param integer $countryId
+     * @param int $countryId
      *
      * @return Airport
      */
@@ -94,7 +93,7 @@ class Airport
     }
 
     /**
-     * Get countryId
+     * Get countryId.
      *
      * @return int
      */
@@ -104,7 +103,7 @@ class Airport
     }
 
     /**
-     * Set location
+     * Set location.
      *
      * @param string $location
      *
@@ -118,7 +117,7 @@ class Airport
     }
 
     /**
-     * Get location
+     * Get location.
      *
      * @return string
      */
@@ -128,13 +127,10 @@ class Airport
     }
 
     /**
-     * Return Airport name
+     * Return Airport name.
      */
     public function __toString(): string
     {
         return $this->name;
     }
-
-
 }
-

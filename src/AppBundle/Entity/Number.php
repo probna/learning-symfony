@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Number
+ * Number.
  *
  * @ORM\Table(name="number")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NumberRepository")
@@ -28,9 +28,8 @@ class Number
      */
     private $value;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -40,9 +39,9 @@ class Number
     }
 
     /**
-     * Set value
+     * Set value.
      *
-     * @param integer $value
+     * @param int $value
      *
      * @return Number
      */
@@ -54,7 +53,7 @@ class Number
     }
 
     /**
-     * Get value
+     * Get value.
      *
      * @return int
      */
@@ -63,4 +62,3 @@ class Number
         return $this->value;
     }
 }
-

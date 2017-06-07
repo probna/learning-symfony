@@ -3,7 +3,6 @@
 namespace Aviation\AirlinesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,15 +15,15 @@ class AirlineType extends AbstractType
     {
         $builder->add('name')->add('country');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Aviation\AirlinesBundle\Entity\Airline'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'Aviation\AirlinesBundle\Entity\Airline',
+        ]);
     }
 
     /**
@@ -34,6 +33,4 @@ class AirlineType extends AbstractType
     {
         return 'aviation_airlinesbundle_airline';
     }
-
-
 }

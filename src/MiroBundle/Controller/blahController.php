@@ -3,9 +3,10 @@
 namespace MiroBundle\Controller;
 
 use MiroBundle\Entity\blah;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Blah controller.
@@ -26,9 +27,9 @@ class blahController extends Controller
 
         $blahs = $em->getRepository('MiroBundle:blah')->findAll();
 
-        return $this->render('blah/index.html.twig', array(
+        return $this->render('blah/index.html.twig', [
             'blahs' => $blahs,
-        ));
+        ]);
     }
 
     /**
@@ -44,18 +45,17 @@ class blahController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($blah);
             $em->flush();
 
-            return $this->redirectToRoute('blah_show', array('id' => $blah->getId()));
+            return $this->redirectToRoute('blah_show', ['id' => $blah->getId()]);
         }
 
-        return $this->render('blah/new.html.twig', array(
+        return $this->render('blah/new.html.twig', [
             'blah' => $blah,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -69,10 +69,10 @@ class blahController extends Controller
         var_dump($blah->getName());
         $deleteForm = $this->createDeleteForm($blah);
 
-        return $this->render('blah/show.html.twig', array(
-            'blah' => $blah,
+        return $this->render('blah/show.html.twig', [
+            'blah'        => $blah,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -84,20 +84,20 @@ class blahController extends Controller
     public function editAction(Request $request, blah $blah)
     {
         $deleteForm = $this->createDeleteForm($blah);
-        $editForm = $this->createForm('MiroBundle\Form\blahType', $blah);
+        $editForm   = $this->createForm('MiroBundle\Form\blahType', $blah);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('blah_edit', array('id' => $blah->getId()));
+            return $this->redirectToRoute('blah_edit', ['id' => $blah->getId()]);
         }
 
-        return $this->render('blah/edit.html.twig', array(
-            'blah' => $blah,
-            'edit_form' => $editForm->createView(),
+        return $this->render('blah/edit.html.twig', [
+            'blah'        => $blah,
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -130,7 +130,7 @@ class blahController extends Controller
     private function createDeleteForm(blah $blah)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('blah_delete', array('id' => $blah->getId())))
+            ->setAction($this->generateUrl('blah_delete', ['id' => $blah->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

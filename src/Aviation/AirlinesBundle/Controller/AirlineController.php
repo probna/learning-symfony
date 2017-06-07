@@ -2,22 +2,21 @@
 
 namespace Aviation\AirlinesBundle\Controller;
 
-use Aviation\AirlinesBundle\Entity\Country;
-use phpDocumentor\Reflection\Types\Integer;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\VarDumper\VarDumper;
 use Aviation\AirlinesBundle\Entity\Airline;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Aviation\AirlinesBundle\Entity\Country;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Airline controller.
  *
  * @Route("airlines")
  */
-class AirlineController extends Controller {
+class AirlineController extends Controller
+{
     /**
      * Lists all airline entities.
      *
@@ -30,9 +29,9 @@ class AirlineController extends Controller {
 
         $airlines = $em->getRepository('AviationAirlinesBundle:Airline')->findAll();
 
-        return $this->render('airline/index.html.twig', array(
+        return $this->render('airline/index.html.twig', [
             'airlines' => $airlines,
-        ));
+        ]);
     }
 
     /**
@@ -44,7 +43,7 @@ class AirlineController extends Controller {
     public function newAction(Request $request)
     {
         $airline = new Airline();
-        $form = $this->createForm('Aviation\AirlinesBundle\Form\AirlineType', $airline);
+        $form    = $this->createForm('Aviation\AirlinesBundle\Form\AirlineType', $airline);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,13 +51,13 @@ class AirlineController extends Controller {
             $em->persist($airline);
             $em->flush();
 
-            return $this->redirectToRoute('airlines_show', array('id' => $airline->getId()));
+            return $this->redirectToRoute('airlines_show', ['id' => $airline->getId()]);
         }
 
-        return $this->render('airline/new.html.twig', array(
+        return $this->render('airline/new.html.twig', [
             'airline' => $airline,
-            'form' => $form->createView(),
-        ));
+            'form'    => $form->createView(),
+        ]);
     }
 
     /**
@@ -71,10 +70,10 @@ class AirlineController extends Controller {
     {
         $deleteForm = $this->createDeleteForm($airline);
 
-        return $this->render('airline/show.html.twig', array(
-            'airline' => $airline,
+        return $this->render('airline/show.html.twig', [
+            'airline'     => $airline,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -86,20 +85,20 @@ class AirlineController extends Controller {
     public function editAction(Request $request, Airline $airline)
     {
         $deleteForm = $this->createDeleteForm($airline);
-        $editForm = $this->createForm('Aviation\AirlinesBundle\Form\AirlineType', $airline);
+        $editForm   = $this->createForm('Aviation\AirlinesBundle\Form\AirlineType', $airline);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('airlines_edit', array('id' => $airline->getId()));
+            return $this->redirectToRoute('airlines_edit', ['id' => $airline->getId()]);
         }
 
-        return $this->render('airline/edit.html.twig', array(
-            'airline' => $airline,
-            'edit_form' => $editForm->createView(),
+        return $this->render('airline/edit.html.twig', [
+            'airline'     => $airline,
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -132,7 +131,7 @@ class AirlineController extends Controller {
     private function createDeleteForm(Airline $airline)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('airlines_delete', array('id' => $airline->getId())))
+            ->setAction($this->generateUrl('airlines_delete', ['id' => $airline->getId()]))
             ->setMethod('DELETE')
             ->getForm();
     }
@@ -142,6 +141,7 @@ class AirlineController extends Controller {
      *
      * @Route("/country/{countryID}", name="airlines_by_country")
      * @Method("GET")
+     *
      * @param int $countryID
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -150,11 +150,10 @@ class AirlineController extends Controller {
     {
         $countryAirlines = $this->getAirlinesForCountry($countryID);
 
-        return $this->render('airline/countryAirlines.html.twig', array(
+        return $this->render('airline/countryAirlines.html.twig', [
             'airlines' => $countryAirlines,
-        ));
+        ]);
     }
-
 
     /**
      * @param string $countryID
@@ -164,8 +163,5 @@ class AirlineController extends Controller {
     private function getAirlinesForCountry(string $countryID): array
     {
         return $this->get('sexyairlines')->getAirlinesByCountry($countryID);
-
     }
-
-
 }
