@@ -5,13 +5,20 @@ general:
   artifacts:
     - "build/"
     - "tmp/"
+    - "var/logs"
 dependencies:
+  pre:
+    - cp etc/circleci/parameters.yml app/config/parameters.yml
   override:
     - composer install --no-interaction
+  post:
+    - php bin/console doctrine:database:create --env=test
+    - php bin/console doctrine:schema:create --env=test
   cache_directories:
     - "vendor"
     - "bin"
 test:
   override:
+    - ./vendor/bin/behat
     - ./vendor/bin/php-cs-fixer fix --dry-run --diff
     
