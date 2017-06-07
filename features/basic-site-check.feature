@@ -5,6 +5,7 @@ Feature: Basic site check
 
   Scenario: Check that homepage works
     Given I am on "/"
-    And I click "Home"
+    When I click "Home"
     Then I should see "Find your flight here"
     And I should be on "/"
+
