@@ -4,12 +4,14 @@ namespace Aviation\AirlinesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Flight
  *
  * @ORM\Table(name="flight")
  * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\FlightRepository")
+ * @UniqueEntity("flightNumber")
  */
 class Flight {
     /**
@@ -24,7 +26,7 @@ class Flight {
     /**
      * @var int
      *
-     * @ORM\Column(name="flightNumber", type="integer")
+     * @ORM\Column(name="flightNumber", type="integer", unique=true)
      */
     private $flightNumber;
 
