@@ -13,4 +13,5 @@ dependencies:
     - "bin"
 test:
   override:
-    - echo 1
+    - ./vendor/bin/php-cs-fixer fix --dry-run --diff
+    
