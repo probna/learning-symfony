@@ -27,21 +27,21 @@ class Flight
     /**
      * @var int
      *
-     * @ORM\Column(name="flightNumber", type="integer", unique=true)
+     * @ORM\Column(name="flightNumber", type="integer", unique=true, nullable=false)
      */
     private $flightNumber;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="flightCode", type="string", length=255)
+     * @ORM\Column(name="flightCode", type="string", length=255, nullable=false)
      */
     private $flightCode;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="departureTime", type="datetime")
+     * @ORM\Column(name="departureTime", type="datetime", nullable=false)
      */
     private $departureTime;
 
@@ -50,14 +50,14 @@ class Flight
      *
      * @ORM\ManyToOne(targetEntity="Aviation\AirlinesBundle\Entity\Airport")
      *
-     * @ORM\JoinColumn(name="departureAirport", referencedColumnName="id")
+     * @ORM\JoinColumn(name="departureAirport", referencedColumnName="id", nullable=false)
      */
     private $departureAirport;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="arrivalTime", type="datetime")
+     * @ORM\Column(name="arrivalTime", type="datetime", nullable=false)
      */
     private $arrivalTime;
 
@@ -66,7 +66,7 @@ class Flight
      *
      * @ORM\ManyToOne(targetEntity="Aviation\AirlinesBundle\Entity\Airport")
      *
-     * @ORM\JoinColumn(name="arrivalAirport", referencedColumnName="id")
+     * @ORM\JoinColumn(name="arrivalAirport", referencedColumnName="id", nullable=false)
      */
     private $arrivalAirport;
 
@@ -74,7 +74,7 @@ class Flight
      * @var \Aviation\AirlinesBundle\Entity\Airline
      * @ORM\ManyToOne(targetEntity="Aviation\AirlinesBundle\Entity\Airline")
      *
-     * @ORM\JoinColumn(name="airline", referencedColumnName="id")
+     * @ORM\JoinColumn(name="airline", referencedColumnName="id", nullable=false)
      */
     private $airline;
 
