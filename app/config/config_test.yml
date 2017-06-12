@@ -1,7 +1,7 @@
 imports:
     - { resource: config_dev.yml }
 parameters:
-    database_name: test
+    database_name: learning_symfony_test
 
 framework:
     test: ~
