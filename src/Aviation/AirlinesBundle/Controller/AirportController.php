@@ -27,7 +27,7 @@ class AirportController extends Controller
 
         $airports = $em->getRepository('AviationAirlinesBundle:Airport')->findAll();
 
-        return $this->render('airport/index.html.twig', [
+        return $this->render('AviationAirlinesBundle:airport:index.html.twig', [
             'airports' => $airports,
         ]);
     }
@@ -56,7 +56,7 @@ class AirportController extends Controller
             return $this->redirectToRoute('airport_show', ['id' => $airport->getId()]);
         }
 
-        return $this->render('airport/new.html.twig', [
+        return $this->render('AviationAirlinesBundle:airport:new.html.twig', [
             'airport' => $airport,
             'form'    => $form->createView(),
         ]);
@@ -76,7 +76,7 @@ class AirportController extends Controller
     {
         $deleteForm = $this->createDeleteForm($airport);
 
-        return $this->render('airport/show.html.twig', [
+        return $this->render('AviationAirlinesBundle:airport:show.html.twig', [
             'airport'     => $airport,
             'delete_form' => $deleteForm->createView(),
         ]);
@@ -105,7 +105,7 @@ class AirportController extends Controller
             return $this->redirectToRoute('airport_edit', ['id' => $airport->getId()]);
         }
 
-        return $this->render('airport/edit.html.twig', [
+        return $this->render('AviationAirlinesBundle:airport:edit.html.twig', [
             'airport'     => $airport,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
