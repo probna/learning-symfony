@@ -16,4 +16,13 @@ class WebContext extends MinkContext
     {
         $this->clickLink($text);
     }
+
+    /**
+     * @When I visit :arg1
+     */
+    public function iVisit(string $page)
+    {
+        $this->visit($page);
+    }
+
 }
