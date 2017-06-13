@@ -29,7 +29,7 @@ class AirlineController extends Controller
 
         $airlines = $em->getRepository('AviationAirlinesBundle:Airline')->findAll();
 
-        return $this->render('airline/index.html.twig', [
+        return $this->render('AviationAirlinesBundle:airline:index.html.twig', [
             'airlines' => $airlines,
         ]);
     }
@@ -54,7 +54,7 @@ class AirlineController extends Controller
             return $this->redirectToRoute('airlines_show', ['id' => $airline->getId()]);
         }
 
-        return $this->render('airline/new.html.twig', [
+        return $this->render('AviationAirlinesBundle:airline:new.html.twig', [
             'airline' => $airline,
             'form'    => $form->createView(),
         ]);
@@ -70,7 +70,7 @@ class AirlineController extends Controller
     {
         $deleteForm = $this->createDeleteForm($airline);
 
-        return $this->render('airline/show.html.twig', [
+        return $this->render('AviationAirlinesBundle:airline:show.html.twig', [
             'airline'     => $airline,
             'delete_form' => $deleteForm->createView(),
         ]);
@@ -94,7 +94,7 @@ class AirlineController extends Controller
             return $this->redirectToRoute('airlines_edit', ['id' => $airline->getId()]);
         }
 
-        return $this->render('airline/edit.html.twig', [
+        return $this->render('AviationAirlinesBundle:airline:edit.html.twig', [
             'airline'     => $airline,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -150,7 +150,7 @@ class AirlineController extends Controller
     {
         $countryAirlines = $this->getAirlinesForCountry($countryID);
 
-        return $this->render('airline/countryAirlines.html.twig', [
+        return $this->render('AviationAirlinesBundle:airline:countryAirlines.html.twig', [
             'airlines' => $countryAirlines,
         ]);
     }

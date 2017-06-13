@@ -26,7 +26,7 @@ class CountryController extends Controller
 
         $countries = $em->getRepository('AviationAirlinesBundle:Country')->findAll();
 
-        return $this->render('country/index.html.twig', [
+        return $this->render('AviationAirlinesBundle:country:index.html.twig', [
             'countries' => $countries,
         ]);
     }
@@ -39,7 +39,7 @@ class CountryController extends Controller
      */
     public function showAction(Country $country)
     {
-        return $this->render('country/show.html.twig', [
+        return $this->render('AviationAirlinesBundle:country:show.html.twig', [
             'country' => $country,
         ]);
     }

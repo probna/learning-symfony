@@ -33,7 +33,7 @@ class FlightController extends Controller
 
         $flights = $em->getRepository('AviationAirlinesBundle:Flight')->findAll();
 
-        return $this->render('flight/index.html.twig', [
+        return $this->render('AviationAirlinesBundle:flight:index.html.twig', [
             'flights' => $flights,
         ]);
     }
@@ -62,7 +62,7 @@ class FlightController extends Controller
             return $this->redirectToRoute('flight_show', ['id' => $flight->getId()]);
         }
 
-        return $this->render('flight/new.html.twig', [
+        return $this->render('AviationAirlinesBundle:flight:new.html.twig', [
             'flight' => $flight,
             'form'   => $form->createView(),
         ]);
@@ -82,7 +82,7 @@ class FlightController extends Controller
     {
         $deleteForm = $this->createDeleteForm($flight);
 
-        return $this->render('flight/show.html.twig', [
+        return $this->render('AviationAirlinesBundle:flight:show.html.twig', [
             'flight'      => $flight,
             'delete_form' => $deleteForm->createView(),
         ]);
@@ -111,7 +111,7 @@ class FlightController extends Controller
             return $this->redirectToRoute('flight_edit', ['id' => $flight->getId()]);
         }
 
-        return $this->render('flight/edit.html.twig', [
+        return $this->render('AviationAirlinesBundle:flight:edit.html.twig', [
             'flight'      => $flight,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -173,7 +173,7 @@ class FlightController extends Controller
     {
         $flights = $this->get('aviation.repository.flights')->findByDepartureAirport($airport);
 
-        return $this->render('flight/flightList.html.twig', [
+        return $this->render('AviationAirlinesBundle:flight:flightList.html.twig', [
             'flights' => $flights,
         ]);
     }
