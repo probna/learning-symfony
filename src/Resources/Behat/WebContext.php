@@ -24,5 +24,4 @@ class WebContext extends MinkContext
     {
         $this->visit($page);
     }
-
 }
