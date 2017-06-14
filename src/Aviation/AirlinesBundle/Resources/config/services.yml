@@ -8,7 +8,7 @@ services:
       class: Doctrine\ORM\EntityRepository
       factory: ['@doctrine.orm.default_entity_manager', getRepository]
       arguments:
-        - Aviation\AirlinesBundle\Entity\Country
+        - Aviation\CountryBundle\Entity\Country
   aviation.repository.flights:
     class: Doctrine\ORM\EntityRepository
     factory: ['@doctrine.orm.default_entity_manager', getRepository]
