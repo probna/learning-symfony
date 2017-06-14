@@ -1,6 +1,6 @@
 <?php
 
-namespace Aviation\AirlinesBundle\Repository;
+namespace Aviation\CountryBundle\Repository;
 
 /**
  * CountryRepository.

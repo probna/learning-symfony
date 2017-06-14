@@ -1,6 +1,6 @@
 <?php
 
-namespace Aviation\AirlinesBundle\Entity;
+namespace Aviation\CountryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Country.
  *
  * @ORM\Table(name="country")
- * @ORM\Entity(repositoryClass="Aviation\AirlinesBundle\Repository\CountryRepository")
+ * @ORM\Entity(repositoryClass="Aviation\CountryBundle\Repository\CountryRepository")
  */
 class Country
 {
@@ -35,6 +35,11 @@ class Country
      * @ORM\Column(name="country_name", type="string", length=255, unique=true)
      */
     private $countryName;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $airlines;
 
     public function __construct()
     {
