@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new MiroBundle\MiroBundle(),
             new Aviation\AirlinesBundle\AviationAirlinesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Aviation\CountryBundle\AviationCountryBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
