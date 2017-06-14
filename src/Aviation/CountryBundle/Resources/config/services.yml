@@ -1,0 +1,4 @@
+services:
+#    aviation_country.example:
+#        class: Aviation\CountryBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,3 +1,8 @@
+aviation_country:
+    resource: "@AviationCountryBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 two_e_systems_airlines:
     resource: "@AviationAirlinesBundle/Controller/"
     type:     annotation
