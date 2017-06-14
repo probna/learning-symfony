@@ -2,7 +2,7 @@
 
 namespace Aviation\AirlinesBundle\Repository;
 
-use Aviation\AirlinesBundle\Entity\Country;
+use Aviation\CountryBundle\Entity\Country;
 
 /**
  * AirlineRepository.

@@ -3,7 +3,7 @@
 namespace Aviation\AirlinesBundle\Service;
 
 use Aviation\AirlinesBundle\Repository\AirlineRepository;
-use Aviation\AirlinesBundle\Repository\CountryRepository;
+use Aviation\CountryBundle\Repository\CountryRepository;
 
 class SexyAirlines
 {
