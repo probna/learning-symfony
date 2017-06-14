@@ -29,10 +29,10 @@ class Airline
     private $title;
 
     /**
-     * @var \Aviation\AirlinesBundle\Entity\Country
+     * @var \Aviation\CountryBundle\Entity\Country
      *
      * Many Airlines have One Country
-     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\ManyToOne(targetEntity="Aviation\CountryBundle\Entity\Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
@@ -88,7 +88,7 @@ class Airline
     /**
      * Get country.
      *
-     * @return \Aviation\AirlinesBundle\Entity\Country
+     * @return \Aviation\CountryBundle\Entity\Country
      */
     public function getCountry()
     {

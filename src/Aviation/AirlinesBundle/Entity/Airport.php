@@ -30,9 +30,9 @@ class Airport
     private $name;
 
     /**
-     * @var \Aviation\AirlinesBundle\Entity\Country
+     * @var \Aviation\CountryBundle\Entity\Country
      *
-     * @ORM\ManyToOne(targetEntity="Country")
+     * @ORM\ManyToOne(targetEntity="Aviation\CountryBundle\Entity\Country")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
@@ -79,11 +79,9 @@ class Airport
     }
 
     /**
-     * Set countryId.
+     * Set Country.
      *
      * @param int $countryId
-     *
-     * @return Airport
      */
     public function setCountry($country)
     {
