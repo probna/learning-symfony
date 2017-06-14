@@ -13,8 +13,8 @@ use Aviation\AirlinesBundle\Entity\Country;
 class AirlineRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * @param string                                  $name
-     * @param \Aviation\AirlinesBundle\Entity\Country $country
+     * @param string                                 $name
+     * @param \Aviation\CountryBundle\Entity\Country $country
      *
      * @return array
      */
@@ -24,8 +24,8 @@ class AirlineRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * @param \Aviation\AirlinesBundle\Entity\Country $country
-     * @param int                                     $limit
+     * @param \Aviation\CountryBundle\Entity\Country $country
+     * @param int                                    $limit
      *
      * @return array
      */
