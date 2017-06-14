@@ -6,7 +6,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use Aviation\AirlinesBundle\Entity\Airline;
 use Aviation\AirlinesBundle\Entity\Airport;
-use Aviation\AirlinesBundle\Entity\Country;
+use Aviation\CountryBundle\Entity\Country;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
