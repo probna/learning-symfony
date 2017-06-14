@@ -50,7 +50,7 @@ class DefaultController extends Controller
 
             dump($flights);
 
-            return $this->render('flight/flightList.html.twig', [
+            return $this->render('AviationAirlinesBundle:flight:flightList.html.twig', [
                 'flights' => $flights,
             ]);
         }
