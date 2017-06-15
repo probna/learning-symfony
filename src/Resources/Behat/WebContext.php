@@ -4,10 +4,11 @@ namespace Resources\Behat;
 
 use Behat\MinkExtension\Context\MinkContext;
 
+use Behat\Symfony2Extension\Context\KernelAwareContext;
 /**
  * Behat context class.
  */
-class WebContext extends MinkContext
+class WebContext extends MinkContext implements KernelAwareContext
 {
     /**
      * @When I click :text
