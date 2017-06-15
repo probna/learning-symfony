@@ -21,10 +21,10 @@ class WebContext extends MinkContext implements KernelAwareContext
     }
 
     /**
-     * @When I visit :arg1
+     * @When I visit :url
      */
-    public function iVisit(string $page)
+    public function iVisit(string $url)
     {
-        $this->visit($page);
+        $this->visit($url);
     }
 }
