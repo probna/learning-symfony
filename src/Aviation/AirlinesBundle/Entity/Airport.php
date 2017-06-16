@@ -33,7 +33,7 @@ class Airport
      * @var \Aviation\CountryBundle\Entity\Country
      *
      * @ORM\ManyToOne(targetEntity="Aviation\CountryBundle\Entity\Country")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $country;
 
