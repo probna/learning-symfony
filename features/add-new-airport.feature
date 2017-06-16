@@ -10,7 +10,8 @@ Feature: Add new airport
 
 
   Scenario: Add new airport
-    Given I am on "/airport/new"
+    Given there is no airport named "Pleso"
+    And I am on "/airport/new"
     When I fill in "aviation_airlinesbundle_airport[name]" with "Pleso"
     And I fill in "aviation_airlinesbundle_airport[location]" with "Pleso Location PL-H311"
     And I select "Croatia (HR)" from "aviation_airlinesbundle_airport[country]"
