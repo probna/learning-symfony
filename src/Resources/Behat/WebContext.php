@@ -27,4 +27,21 @@ class WebContext extends MinkContext implements KernelAwareContext
     {
         $this->visit($url);
     }
+
+    /**
+     * @Given there is no airport named :airportName
+     */
+    public function thereIsNoAirportNamed($airportName)
+    {
+        $airportRepository = $this->getService('aviation.repository.airports');
+        $airports          = $airportRepository->findByName($airportName);
+
+        if ($airports != null) {
+            $em = $this->getEntityManager();
+
+            foreach ($airports as $airport) {
+                $this->delete($airport);
+            }
+        }
+    }
 }
