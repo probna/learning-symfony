@@ -3,7 +3,7 @@
 namespace Aviation\AirlinesBundle\Controller;
 
 use Aviation\AirlinesBundle\Entity\Airline;
-use Aviation\AirlinesBundle\Entity\Country;
+use Aviation\CountryBundle\Entity\Country;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -148,7 +148,9 @@ class AirlineController extends Controller
      */
     public function getAirlinesByCountry(int $countryID): Response
     {
-        $countryAirlines = $this->getAirlinesForCountry($countryID);
+        $country = $this->get('country.repository')->find($countryID);
+
+        $countryAirlines = $this->getAirlinesForCountry($country);
 
         return $this->render('AviationAirlinesBundle:airline:countryAirlines.html.twig', [
             'airlines' => $countryAirlines,
@@ -156,12 +158,12 @@ class AirlineController extends Controller
     }
 
     /**
-     * @param string $countryID
+     * @param \Aviation\CountryBundle\Entity\Country $country
      *
      * @return array
      */
-    private function getAirlinesForCountry(string $countryID): array
+    private function getAirlinesForCountry(Country $country): array
     {
-        return $this->get('sexyairlines')->getAirlinesByCountry($countryID);
+        return $this->get('sexyairlines')->getAirlinesByCountry($country);
     }
 }
