@@ -14,7 +14,7 @@ Feature: Add new flight
     When I fill in "aviation_airlinesbundle_flight[flightNumber]" with "123"
     And I fill in "aviation_airlinesbundle_flight[flightCode]" with "B234"
     And I select "2015" from "aviation_airlinesbundle_flight[arrivalTime][date][year]"
-    And I select "Luthansa" from "aviation_airlinesbundle_flight[airline]"
+    And I select "Lufthansa" from "aviation_airlinesbundle_flight[airline]"
     And I select "Pleso" from "aviation_airlinesbundle_flight[departureAirport]"
     And I select "Split" from "aviation_airlinesbundle_flight[arrivalAirport]"
     And I press "Create"
