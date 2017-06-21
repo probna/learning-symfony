@@ -3,14 +3,10 @@
 namespace Aviation\AirlinesBundle\Service;
 
 use Aviation\AirlinesBundle\Repository\AirlineRepository;
-use Aviation\CountryBundle\Repository\CountryRepository;
+use Aviation\CountryBundle\Entity\Country;
 
 class SexyAirlines
 {
-    /**
-     * @var \Aviation\AirlinesBundle\Repository\CountryRepository
-     */
-    private $countryRepository;
     /**
      * @var \Aviation\AirlinesBundle\Repository\AirlineRepository
      */
@@ -23,26 +19,22 @@ class SexyAirlines
     /**
      * SexyAirlines constructor.
      *
-     * @param \Aviation\AirlinesBundle\Repository\CountryRepository $countryRepository
      * @param \Aviation\AirlinesBundle\Repository\AirlineRepository $airlineRepository
      * @param int                                                   $limit
      */
-    public function __construct(CountryRepository $countryRepository, AirlineRepository $airlineRepository, int $limit)
+    public function __construct(AirlineRepository $airlineRepository, int $limit)
     {
-        $this->countryRepository = $countryRepository;
         $this->airlineRepository = $airlineRepository;
         $this->limit             = $limit;
     }
 
     /**
-     * @param string $countryID
+     * @param \Aviation\CountryBundle\Entity\Country $country
      *
      * @return array
      */
-    public function getAirlinesByCountry(string $countryID): array
+    public function getAirlinesByCountry(Country $country): array
     {
-        $country = $this->countryRepository->find($countryID);
-
         $airlines = $this->airlineRepository->getAllByCountry($country, $this->limit);
 
         return $airlines;
