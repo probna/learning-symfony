@@ -16,5 +16,6 @@ Feature: Add new airport
     And I fill in "aviation_airlinesbundle_airport[location]" with "Pleso Location PL-H311"
     And I select "Croatia (HR)" from "aviation_airlinesbundle_airport[country]"
     And I press "Create"
+    Then the url should match "[flight\/\d+]"
     And I should see "Pleso Location PL-H311"
 
