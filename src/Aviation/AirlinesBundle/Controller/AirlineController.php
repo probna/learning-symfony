@@ -153,6 +153,7 @@ class AirlineController extends Controller
         $countryAirlines = $this->getAirlinesForCountry($country);
 
         return $this->render('AviationAirlinesBundle:airline:countryAirlines.html.twig', [
+            'country'  => $country,
             'airlines' => $countryAirlines,
         ]);
     }
