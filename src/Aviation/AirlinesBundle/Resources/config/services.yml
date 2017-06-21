@@ -22,7 +22,6 @@ services:
   sexyairlines:
       class: Aviation\AirlinesBundle\Service\SexyAirlines
       arguments:
-        - "@country.repository"
         - "@aviation.repository.airlines"
         - "10"
   aviation.airlines.service.sexy_airlines.top5:
