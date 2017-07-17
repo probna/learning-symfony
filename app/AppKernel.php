@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Aviation\AirlinesBundle\AviationAirlinesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Aviation\CountryBundle\AviationCountryBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
