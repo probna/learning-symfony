@@ -5,30 +5,30 @@
 
     <table class="table table-hover">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ flight.id }}</td>
-            </tr>
-            <tr>
-                <th>Flightnumber</th>
-                <td>{{ flight.flightNumber }}</td>
-            </tr>
-            <tr>
-                <th>Flightcode</th>
-                <td>{{ flight.flightCode }}</td>
-            </tr>
-            <tr>
-                <th>Departuretime</th>
-                <td>{% if flight.departureTime %}{{ flight.departureTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Arrivaltime</th>
-                <td>{% if flight.arrivalTime %}{{ flight.arrivalTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Airline</th>
-                <td>{{ flight.airline }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ flight.id }}</td>
+        </tr>
+        <tr>
+            <th>Flightnumber</th>
+            <td>{{ flight.flightNumber }}</td>
+        </tr>
+        <tr>
+            <th>Flightcode</th>
+            <td>{{ flight.flightCode }}</td>
+        </tr>
+        <tr>
+            <th>Departuretime</th>
+            <td>{% if flight.departureTime %}{{ flight.departureTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Arrivaltime</th>
+            <td>{% if flight.arrivalTime %}{{ flight.arrivalTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Airline</th>
+            <td>{{ flight.airline }}</td>
+        </tr>
         </tbody>
     </table>
 
@@ -36,13 +36,15 @@
         <li>
             <a href="{{ path('flight_index') }}">Back to the list</a>
         </li>
-        <li>
-            <a href="{{ path('flight_edit', { 'id': flight.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
+        {% if is_granted("ROLE_ADMIN") %}
+            <li>
+                <a href="{{ path('flight_edit', { 'id': flight.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+                {{ form_end(delete_form) }}
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}

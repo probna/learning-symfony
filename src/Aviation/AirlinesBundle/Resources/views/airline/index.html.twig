@@ -17,16 +17,17 @@
             <tr>
                 <td><a href="{{ path('airlines_show', { 'id': airline.id }) }}">{{ airline.id }}</a></td>
                 <td>{{ airline.name }}</td>
-                <td><a href="{{ path('country_show', {'id' : airline.country.id}) }}"> {{ airline.country
-                        }}</a></td>
+                <td><a href="{{ path('country_show', {'id' : airline.country.id}) }}"> {{ airline.country }}</a></td>
                 <td>
                     <ul>
                         <li>
                             <a href="{{ path('airlines_show', { 'id': airline.id }) }}">show</a>
                         </li>
-                        <li>
-                            <a href="{{ path('airlines_edit', { 'id': airline.id }) }}">edit</a>
-                        </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li>
+                                <a href="{{ path('airlines_edit', { 'id': airline.id }) }}">edit</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </td>
             </tr>
@@ -35,8 +36,10 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('airlines_new') }}">Create a new airline</a>
-        </li>
+        {% if is_granted("ROLE_ADMIN") %}
+            <li>
+                <a href="{{ path('airlines_new') }}">Create a new airline</a>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}

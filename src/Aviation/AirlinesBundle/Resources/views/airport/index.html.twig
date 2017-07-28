@@ -5,13 +5,13 @@
 
     <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Country</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for airport in airports %}
@@ -25,9 +25,11 @@
                         <li>
                             <a href="{{ path('airport_show', { 'id': airport.id }) }}">show</a>
                         </li>
-                        <li>
-                            <a href="{{ path('airport_edit', { 'id': airport.id }) }}">edit</a>
-                        </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li>
+                                <a href="{{ path('airport_edit', { 'id': airport.id }) }}">edit</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </td>
             </tr>
@@ -36,8 +38,10 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('airport_new') }}">Create a new airport</a>
-        </li>
+        {% if is_granted("ROLE_ADMIN") %}
+            <li>
+                <a href="{{ path('airport_new') }}">Create a new airport</a>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}
