@@ -40,8 +40,6 @@ class WebContext extends MinkContext implements KernelAwareContext
         $airports          = $airportRepository->findByName($airportName);
 
         if (null !== $airports) {
-            $em = $this->getEntityManager();
-
             foreach ($airports as $airport) {
                 $this->delete($airport);
             }
@@ -72,8 +70,6 @@ class WebContext extends MinkContext implements KernelAwareContext
         $flights          = $flightRepository->findByflightNumber($flightNumber);
 
         if (null !== $flights) {
-            $em = $this->getEntityManager();
-
             foreach ($flights as $flight) {
                 $this->delete($flight);
             }
@@ -85,6 +81,8 @@ class WebContext extends MinkContext implements KernelAwareContext
      */
     public function iAmAuthenticatedAs($username)
     {
+        $roleLevel = $username === 'admin_tester' ? 'ROLE_ADMIN' : 'ROLE_USER';
+
         $driver = $this->getSession()->getDriver();
         if (!$driver instanceof BrowserKitDriver) {
             throw new UnsupportedDriverActionException('This step is only supported by the BrowserKitDriver');
@@ -95,14 +93,58 @@ class WebContext extends MinkContext implements KernelAwareContext
 
         $session = $client->getContainer()->get('session');
 
-        $user        = $this->kernel->getContainer()->get('fos_user.user_manager')->findUserByUsername($username);
+        $user = $this->kernel->getContainer()->get('fos_user.user_manager')->findUserByUsername($username);
+
         $providerKey = $this->kernel->getContainer()->getParameter('fos_user.firewall_name');
 
-        $token = new UsernamePasswordToken($user, null, $providerKey, $user->getRoles());
+        $token = new UsernamePasswordToken($user, null, $providerKey, [$roleLevel]);
         $session->set('_security_'.$providerKey, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
         $client->getCookieJar()->set($cookie);
+    }
+
+    /**
+     * @BeforeSuite
+     */
+    public static function setup()
+    {
+        $kernel = new \AppKernel('test', true);
+        $kernel->boot();
+
+        $userManager = $kernel->getContainer()->get('fos_user.user_manager');
+
+        $admin_tester        = $userManager->createUser();
+        $admin_tester->setUsername('admin_tester');
+        $admin_tester->setEmail('admin_tester@email.com');
+        $admin_tester->setEmailCanonical('admin_tester@email.com');
+        $admin_tester->setEnabled(1);
+        $admin_tester->setPlainPassword('12345');
+
+        $user_tester        = $userManager->createUser();
+        $user_tester->setUsername('user_tester');
+        $user_tester->setEmail('user_tester@email.com');
+        $user_tester->setEmailCanonical('user_tester@email.com');
+        $user_tester->setEnabled(1);
+        $user_tester->setPlainPassword('12345');
+
+        $userManager->updateUser($user_tester);
+        $userManager->updateUser($admin_tester);
+    }
+
+    /** @AfterSuite */
+    public static function teardown()
+    {
+        $kernel = new \AppKernel('test', true);
+        $kernel->boot();
+
+        $userManager = $kernel->getContainer()->get('fos_user.user_manager');
+
+        $admin_tester = $userManager->findUserByUsername('admin_tester');
+        $user_tester  = $userManager->findUserByUsername('user_tester');
+
+        $userManager->deleteUser($admin_tester);
+        $userManager->deleteUser($user_tester);
     }
 }

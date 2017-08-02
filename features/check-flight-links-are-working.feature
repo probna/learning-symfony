@@ -4,7 +4,7 @@ Feature: Check flight links are working
   I need to click on links related to flights
 
   Scenario: Check that flights list page actions work
-    Given I am authenticated as "regular_user"
+    Given I am authenticated as "user_tester"
     And I am on "/flight/"
     When I click "show"
     Then I should see "Flight"

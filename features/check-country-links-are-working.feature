@@ -4,7 +4,7 @@ Feature: Check country links are working
   I need to click on links related to countries
 
   Scenario: Check that countries list page actions work
-    Given I am authenticated as "regular_user"
+    Given I am authenticated as "user_tester"
     And I am on "/country/"
     When I click "show"
     Then I should see "Country"

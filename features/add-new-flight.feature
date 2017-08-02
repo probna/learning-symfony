@@ -4,14 +4,14 @@ Feature: Add new flight
 	I need to add flight
 
   Scenario: There is a link to add new flight on flight page
-    Given I am authenticated as "admin_user"
+    Given I am authenticated as "admin_tester"
     And I am on "/flight/"
     When I click "Create a new flight"
     Then I should see "Flight creation"
 
 
   Scenario: Add new flight
-    Given I am authenticated as "admin_user"
+    Given I am authenticated as "admin_tester"
     And I am on "/flight/new"
     And there is no flight with flight number "123"
     When I fill in "aviation_airlinesbundle_flight[flightNumber]" with "123"
