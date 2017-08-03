@@ -10,5 +10,4 @@ Feature: Show user their profile page
     And I press "Prijava"
     Then I should be on "/"
     And I visit "/profile"
-    Then I should see text matching "Prijavljen kao tomo.omot"
     And I should see text matching "Korisničko ime: tomo.omot"

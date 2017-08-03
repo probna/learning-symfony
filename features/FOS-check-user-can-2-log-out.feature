@@ -12,7 +12,6 @@ Feature: Log out a logged in user
     Then I should be on "/"
 #    confirm login
     And I visit "/profile"
-    Then I should see text matching "Prijavljen kao tomo.omot"
     And I should see text matching "Korisničko ime: tomo.omot"
 #    log out
     And I visit "/logout"
