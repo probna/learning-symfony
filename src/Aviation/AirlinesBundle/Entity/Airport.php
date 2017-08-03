@@ -18,7 +18,7 @@ class Airport
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     //     * @ORM\OneToMany(targetEntity="Aviation\AirlinesBundle\Entity\Flight", mappedBy="departureAirport, arrivalAirport")
+     * @ORM\OneToMany(targetEntity="Aviation\AirlinesBundle\Entity\Flight", mappedBy="departureAirport, arrivalAirport")
      */
     private $id;
 
@@ -33,7 +33,7 @@ class Airport
      * @var \Aviation\CountryBundle\Entity\Country
      *
      * @ORM\ManyToOne(targetEntity="Aviation\CountryBundle\Entity\Country")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $country;
 

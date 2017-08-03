@@ -50,7 +50,7 @@ class Flight
      *
      * @ORM\ManyToOne(targetEntity="Aviation\AirlinesBundle\Entity\Airport")
      *
-     * @ORM\JoinColumn(name="departureAirport", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="departureAirport", referencedColumnName="id", nullable=false, onDelete="SET NULL")
      */
     private $departureAirport;
 
@@ -66,7 +66,7 @@ class Flight
      *
      * @ORM\ManyToOne(targetEntity="Aviation\AirlinesBundle\Entity\Airport")
      *
-     * @ORM\JoinColumn(name="arrivalAirport", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="arrivalAirport", referencedColumnName="id", nullable=false, onDelete="SET NULL")
      */
     private $arrivalAirport;
 
@@ -74,7 +74,7 @@ class Flight
      * @var \Aviation\AirlinesBundle\Entity\Airline
      * @ORM\ManyToOne(targetEntity="Aviation\AirlinesBundle\Entity\Airline")
      *
-     * @ORM\JoinColumn(name="airline", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="airline", referencedColumnName="id", nullable=false, onDelete="SET NULL")
      */
     private $airline;
 
