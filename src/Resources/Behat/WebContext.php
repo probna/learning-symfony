@@ -40,6 +40,8 @@ class WebContext extends MinkContext implements KernelAwareContext
         $airports          = $airportRepository->findByName($airportName);
 
         if (null !== $airports) {
+            $em = $this->getEntityManager();
+
             foreach ($airports as $airport) {
                 $this->delete($airport);
             }
@@ -93,8 +95,7 @@ class WebContext extends MinkContext implements KernelAwareContext
 
         $session = $client->getContainer()->get('session');
 
-        $user = $this->kernel->getContainer()->get('fos_user.user_manager')->findUserByUsername($username);
-
+        $user        = $this->kernel->getContainer()->get('fos_user.user_manager')->findUserByUsername($username);
         $providerKey = $this->kernel->getContainer()->getParameter('fos_user.firewall_name');
 
         $token = new UsernamePasswordToken($user, null, $providerKey, [$roleLevel]);

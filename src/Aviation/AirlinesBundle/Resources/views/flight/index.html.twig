@@ -5,17 +5,17 @@
 
     <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Flightnumber</th>
-                <th>Flightcode</th>
-                <th>Departuretime</th>
-                <th>From</th>
-                <th>Arrivaltime</th>
-                <th>Destination</th>
-                <th>Airline</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Flightnumber</th>
+            <th>Flightcode</th>
+            <th>Departuretime</th>
+            <th>From</th>
+            <th>Arrivaltime</th>
+            <th>Destination</th>
+            <th>Airline</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for flight in flights %}
@@ -24,18 +24,20 @@
                 <td>{{ flight.flightNumber }}</td>
                 <td>{{ flight.flightCode }}</td>
                 <td>{% if flight.departureTime %}{{ flight.departureTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if flight.departureAirport%}{{ flight.departureAirport}}{% endif %}</td>
+                <td>{% if flight.departureAirport %}{{ flight.departureAirport }}{% endif %}</td>
                 <td>{% if flight.arrivalTime %}{{ flight.arrivalTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if flight.arrivalAirport%}{{ flight.arrivalAirport}}{% endif %}</td>
+                <td>{% if flight.arrivalAirport %}{{ flight.arrivalAirport }}{% endif %}</td>
                 <td>{{ flight.airline }}</td>
                 <td>
                     <ul>
                         <li>
                             <a href="{{ path('flight_show', { 'id': flight.id }) }}">show</a>
                         </li>
-                        <li>
-                            <a href="{{ path('flight_edit', { 'id': flight.id }) }}">edit</a>
-                        </li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li>
+                                <a href="{{ path('flight_edit', { 'id': flight.id }) }}">edit</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </td>
             </tr>
@@ -44,8 +46,10 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('flight_new') }}">Create a new flight</a>
-        </li>
+        {% if is_granted("ROLE_ADMIN") %}
+            <li>
+                <a href="{{ path('flight_new') }}">Create a new flight</a>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}
