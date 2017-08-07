@@ -18,7 +18,7 @@ class LuckyController extends Controller
     public function numberAction($max = 50)
     {
         //        var_dump($max);
-//        die();
+        //        die();
         $number = mt_rand(0, $max);
 
         return $this->render('lucky/number.html.twig', [
