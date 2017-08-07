@@ -1,6 +1,6 @@
 Feature: Basic site check
 	In order to see that site works
-	As a user
+    As an ordinary visitor
 	I need to check few pages around
 
   Scenario: Check that homepage works
