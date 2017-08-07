@@ -4,7 +4,8 @@ Feature: Register new user
   I need to be able to register with the site
 
   Scenario: As an ordinary visitor, I should be able to register with the site
-    Given I am on "/register/"
+    Given there is no user with username "tomo.omot"
+    And I am on "/register/"
     When I fill in "fos_user_registration_form[email]" with "hcs@omot.com"
     And I fill in "fos_user_registration_form[username]" with "tomo.omot"
     And I fill in "fos_user_registration_form[plainPassword][first]" with "12345"
