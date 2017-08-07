@@ -48,6 +48,15 @@ jobs:
           name: Behat
           command: ./vendor/bin/behat
       - run:
+          name: Behat 2
+          command: ./vendor/bin/behat
+      - run:
+          name: Behat 3
+          command: ./vendor/bin/behat
+      - run:
+          name: Behat 4
+          command: ./vendor/bin/behat
+      - run:
           name: PHP CS Fixer
           command: ./vendor/bin/php-cs-fixer fix --dry-run --diff
 
