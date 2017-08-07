@@ -39,10 +39,20 @@ class WebContext extends MinkContext implements KernelAwareContext
         $airportRepository = $this->getService('aviation.repository.airports');
         $airports          = $airportRepository->findByName($airportName);
 
-        if (null !== $airports) {
-            $em = $this->getEntityManager();
+        $flightRepository = $this->getService('aviation.repository.flights');
 
+        if (null !== $airports) {
             foreach ($airports as $airport) {
+                $departingFlights = $flightRepository->findByDepartureAirport($airport);
+                $arrivingFlights  = $flightRepository->findByArrivalAirport($airport);
+
+                foreach ($departingFlights as $departingFlight) {
+                    $this->delete($departingFlight);
+                }
+
+                foreach ($arrivingFlights as $arrivingFlight) {
+                    $this->delete($arrivingFlight);
+                }
                 $this->delete($airport);
             }
         }
@@ -147,5 +157,19 @@ class WebContext extends MinkContext implements KernelAwareContext
 
         $userManager->deleteUser($admin_tester);
         $userManager->deleteUser($user_tester);
+    }
+
+    /**
+     * @Given there is no user with username :username
+     */
+    public function thereIsNoUserWithUsername($username)
+    {
+        $userManager = $this->getContainer()->get('fos_user.user_manager');
+
+        $user = $userManager->findUserByUsername($username);
+
+        if (null !== $user) {
+            $userManager->deleteUser($user);
+        }
     }
 }
