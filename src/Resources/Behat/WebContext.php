@@ -116,9 +116,6 @@ class WebContext extends MinkContext implements KernelAwareContext
         $client->getCookieJar()->set($cookie);
     }
 
-    /**
-     * @BeforeSuite
-     */
     public static function setup()
     {
         $kernel = new \AppKernel('test', true);
@@ -144,7 +141,6 @@ class WebContext extends MinkContext implements KernelAwareContext
         $userManager->updateUser($admin_tester);
     }
 
-    /** @AfterSuite */
     public static function teardown()
     {
         $kernel = new \AppKernel('test', true);
