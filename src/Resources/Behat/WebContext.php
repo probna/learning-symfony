@@ -105,7 +105,6 @@ class WebContext extends MinkContext implements KernelAwareContext
 
         $session = $client->getContainer()->get('session');
 
-        $user        = $this->kernel->getContainer()->get('fos_user.user_manager')->findUserByUsername($username);
         $providerKey = $this->kernel->getContainer()->getParameter('fos_user.firewall_name');
 
         $token = new UsernamePasswordToken($user, null, $providerKey, [$roleLevel]);
@@ -116,29 +115,23 @@ class WebContext extends MinkContext implements KernelAwareContext
         $client->getCookieJar()->set($cookie);
     }
 
-    public static function setup()
+    private function handleTestUser($username)
     {
-        $kernel = new \AppKernel('test', true);
-        $kernel->boot();
 
-        $userManager = $kernel->getContainer()->get('fos_user.user_manager');
+        $userManager = $this->getContainer()->get('fos_user.user_manager');
+        $user        = $userManager->findUserByUsername($username);
 
-        $admin_tester        = $userManager->createUser();
-        $admin_tester->setUsername('admin_tester');
-        $admin_tester->setEmail('admin_tester@email.com');
-        $admin_tester->setEmailCanonical('admin_tester@email.com');
-        $admin_tester->setEnabled(1);
-        $admin_tester->setPlainPassword('12345');
+        if ($user !== null) {
+            return $user;
+        }
 
-        $user_tester        = $userManager->createUser();
-        $user_tester->setUsername('user_tester');
-        $user_tester->setEmail('user_tester@email.com');
-        $user_tester->setEmailCanonical('user_tester@email.com');
-        $user_tester->setEnabled(1);
-        $user_tester->setPlainPassword('12345');
+        $user        = $userManager->createUser();
+        $user->setUsername($username);
+        $user->setEmail("{$username}@email.com");
+        $user->setEmailCanonical("{$username}@email.com");
+        $user->setEnabled(1);
+        $user->setPlainPassword('12345');
 
-        $userManager->updateUser($user_tester);
-        $userManager->updateUser($admin_tester);
     }
 
     public static function teardown()
